@@ -905,7 +905,7 @@ def build_telegram_summary(
                 lines.append(f"• {label}: {val}")
         lines.append("")
 
-    lines.append(f"📁 Chi tiết: https://150.230.56.153:8002/job_hyogo_report_{rd}.html")
+    lines.append(f"🌐 [Mở báo cáo chi tiết](http://150.230.56.153:8002/job_hyogo_report_{rd}.html)")
     lines.append("")
 
     return "\n".join(lines)
