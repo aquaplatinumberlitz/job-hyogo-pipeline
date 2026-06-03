@@ -891,6 +891,8 @@ def _is_removed_job(item: JobItem) -> bool:
         "接客", "サービス", "販売", "ホテル", "受付", "コールセンター",
         # Vietnamese language jobs
         "ベトナム語", "ベトナム語通訳",
+        # Convenience store / Retail
+        "コンビニ",
     ]
     for pattern in excluded_patterns:
         if pattern in text:
