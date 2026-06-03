@@ -1310,7 +1310,7 @@ def _run_render_phase(
     html_path = render_html(json_path, cfg)
     public_url = None
     if html_path:
-        public_url = copy_to_public_server(html_path, report_date_hr)
+        public_url = copy_to_public_server(html_path, data.get("report_date", report_date_hr))
         if public_url:
             logger.info("Public URL: %s", public_url)
 
