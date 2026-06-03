@@ -89,6 +89,8 @@ def render_job_card(job, show_link=True):
     fit = job.get("fit_level", "")
     is_agency = job.get("is_agency", False)
     is_large = job.get("is_large_company", False)
+    is_large_factory = job.get("is_large_factory_worksite", False)
+    large_factory_name = job.get("large_factory_name", "")
 
     if cat == "Engineer":
         badges_html += badge("Kỹ sư", "ky-su")
@@ -96,8 +98,6 @@ def render_job_card(job, show_link=True):
         badges_html += badge("Xưởng/kho", "xuong")
     elif cat == "Facebook":
         badges_html += badge("Facebook", "facebook")
-    elif cat == "LargeCompany":
-        badges_html += badge("Cty lớn", "cty-lon")
 
     if etype == "正社員":
         badges_html += badge("正社員", "seishain")
@@ -110,9 +110,13 @@ def render_job_card(job, show_link=True):
         badges_html += badge("Agency", "agency")
     if is_large:
         badges_html += badge("Cty lớn", "cty-lon")
+    if is_large_factory:
+        badges_html += badge("🏭 Nhà máy lớn", "cty-lon")
+    if large_factory_name:
+        badges_html += badge(f"Worksite: {large_factory_name}", "generic")
 
     for b in job.get("badges", []):
-        if b not in ["Kỹ sư", "Xưởng/kho", "Facebook", "Cty lớn", "正社員", "契約社員", "派遣", "Agency"]:
+        if b not in ["Kỹ sư", "Xưởng/kho", "Facebook", "Cty lớn", "正社員", "契約社員", "派遣", "Agency", "🏭 Nhà máy lớn"]:
             badges_html += badge(b, "generic")
 
     if fit == "Cao":
@@ -220,7 +224,7 @@ def render(data):
     priority = data.get("priority_jobs", [])
     engineer = data.get("engineer_jobs", [])
     factory = data.get("factory_warehouse_jobs", [])
-    large = data.get("large_company_jobs", [])
+    large = data.get("large_factory_jobs", [])
     fb = data.get("facebook_findings", [])
     rejected = data.get("rejected", {})
     fb_log = data.get("facebook_crawl_log", [])
@@ -248,7 +252,7 @@ def render(data):
         ("priority", "Job ưu tiên cao"),
         ("engineer", "Job kỹ sư chuyển việc"),
         ("factory", "Job lao động phổ thông"),
-        ("large", "Công ty lớn / Nhà máy lớn"),
+        ("large", "Làm trong nhà máy lớn / Agency at large factory"),
         ("facebook", "Facebook crawl findings"),
         ("rejected", "Tin bị loại"),
     ]
@@ -264,7 +268,7 @@ def render(data):
         ("Kỹ sư chuyển việc", summary.get("engineer_jobs", 0)),
         ("LĐ phổ thông/xưởng/kho", summary.get("factory_warehouse_jobs", 0)),
         ("Facebook giữ lại", summary.get("facebook_kept", 0)),
-        ("Công ty lớn", summary.get("large_company_jobs", 0)),
+        ("Nhà máy lớn", summary.get("large_factory_jobs", 0)),
         ("Tin bị loại", summary.get("rejected_total", 0)),
     ]
     for label, val in cards:
@@ -327,12 +331,12 @@ def render(data):
         lines.append('<div class="empty-msg">Không có job lao động phổ thông phù hợp kỳ này.</div>')
 
     # Large companies
-    lines.append(f'<h2 id="large">🏢 Công ty lớn / Nhà máy lớn</h2>')
+    lines.append(f'<h2 id="large">🏭 Làm trong nhà máy lớn / Agency at large factory</h2>')
     if large:
         for job in large:
             lines.append(render_job_card(job))
     else:
-        lines.append('<div class="empty-msg">Không tìm thấy job từ công ty lớn kỳ này. Một số trang career site công ty lớn có dynamic/JS/login-wall, không crawl được bằng static HTML — cần browser để kiểm tra trực tiếp.</div>')
+        lines.append('<p class="empty-msg">Không tìm thấy job làm trong nhà máy lớn kỳ này.</p>')
 
     # Facebook
     lines.append(f'<h2 id="facebook">📘 Facebook crawl findings</h2>')
@@ -402,7 +406,7 @@ def validate_report(data: dict) -> list[str]:
         issues.append("summary is not a dict")
     else:
         for field in ["total_matched", "engineer_jobs", "factory_warehouse_jobs",
-                       "large_company_jobs", "facebook_kept", "rejected_total"]:
+                       "large_factory_jobs", "facebook_kept", "rejected_total"]:
             if field not in summary:
                 issues.append(f"summary missing: {field}")
 
@@ -411,7 +415,7 @@ def validate_report(data: dict) -> list[str]:
         issues.append("rejected is not a dict")
 
     for section in ["top_jobs", "priority_jobs", "engineer_jobs",
-                    "factory_warehouse_jobs", "large_company_jobs", "facebook_findings"]:
+                    "factory_warehouse_jobs", "large_factory_jobs", "facebook_findings"]:
         items = data.get(section, [])
         if not isinstance(items, list):
             issues.append(f"{section} is not a list")
@@ -436,7 +440,7 @@ def build_telegram_summary(data: dict) -> str:
     total = summary.get("total_matched", 0)
     engineer = summary.get("engineer_jobs", 0)
     factory = summary.get("factory_warehouse_jobs", 0)
-    large = summary.get("large_company_jobs", 0)
+    large = summary.get("large_factory_jobs", 0)
     facebook = summary.get("facebook_kept", 0)
     rejected_total = summary.get("rejected_total", 0)
 
@@ -444,7 +448,7 @@ def build_telegram_summary(data: dict) -> str:
     lines.append(f"• Tổng job phù hợp: {total}")
     lines.append(f"• Kỹ sư chuyển việc: {engineer}")
     lines.append(f"• LĐ phổ thông/xưởng/kho: {factory}")
-    lines.append(f"• Công ty lớn: {large}")
+    lines.append(f"• Nhà máy lớn: {large}")
     lines.append(f"• Facebook giữ lại: {facebook}")
     lines.append(f"• Tin bị loại: {rejected_total}")
     lines.append("")

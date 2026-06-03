@@ -32,6 +32,10 @@ class JobItem:
     missing_info: list[str] = field(default_factory=list)
     is_agency: bool = False
     is_large_company: bool = False
+    is_large_factory_worksite: bool = False
+    large_factory_name: str = ""
+    large_factory_match_reason: str = ""
+    large_factory_source: str = ""
     is_duplicate: bool = False
     duplicate_sources: list[str] = field(default_factory=list)
     raw_title: str = ""

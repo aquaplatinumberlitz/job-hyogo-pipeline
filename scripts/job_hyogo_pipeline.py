@@ -63,6 +63,29 @@ SOURCE_MAP: dict[str, str] = {
     "Facebook": "Facebook",
 }
 
+LARGE_FACTORY_KEYWORDS = {
+    "mitsubishi": {"display_name": "Mitsubishi / 三菱系", "keywords": ["三菱電機", "三菱電機モビリティ", "三菱重工", "三菱", "Mitsubishi"]},
+    "kawasaki": {"display_name": "Kawasaki Heavy Industries / 川崎重工", "keywords": ["川崎重工", "川崎重工業", "Kawasaki Heavy", "Kawasaki"]},
+    "sumitomo": {"display_name": "Sumitomo / 住友系", "keywords": ["住友ゴム", "住友", "Sumitomo"]},
+    "kobe_steel": {"display_name": "Kobe Steel / 神戸製鋼", "keywords": ["神戸製鋼", "KOBELCO", "Kobe Steel"]},
+    "nippon_steel": {"display_name": "Nippon Steel / 日本製鉄", "keywords": ["日本製鉄", "日鉄", "Nippon Steel"]},
+    "hitachi": {"display_name": "Hitachi / 日立", "keywords": ["日立", "Hitachi"]},
+    "osaka_titanium": {"display_name": "Osaka Titanium Technologies", "keywords": ["大阪チタニウム", "Osaka Titanium"]},
+}
+
+OFFICIAL_CAREER_NON_JOB_KEYWORDS = [
+    "社員の声", "キャリア入社社員の声", "People", "インタビュー", "Interview",
+    "社員紹介", "採用メッセージ", "Message", "先輩社員", "座談会",
+    "福利厚生", "研修制度", "募集要項トップ", "新卒採用", "会社説明",
+]
+
+JOB_POSITIVE_KEYWORDS = [
+    "募集職種", "求人", "採用職種", "仕事内容", "職務内容",
+    "勤務地", "給与", "月給", "年収", "正社員", "契約社員",
+    "派遣", "製造", "組立", "検査", "保全", "設備", "品質管理",
+    "生産技術", "機械オペレーター", "フォークリフト",
+]
+
 
 def safe_int(v: Any, default: int = 0) -> int:
     """Safely convert a value to int."""
@@ -70,6 +93,20 @@ def safe_int(v: Any, default: int = 0) -> int:
         return int(v)
     except (TypeError, ValueError):
         return default
+
+
+def detect_large_factory_worksite(text: str) -> tuple[bool, str, str, str]:
+    """Detect if text mentions a large factory worksite.
+
+    Returns (is_match, display_name, match_reason, source_field).
+    """
+    text_lower = text.lower()
+    for key, factory in LARGE_FACTORY_KEYWORDS.items():
+        display_name = factory["display_name"]
+        for kw in factory["keywords"]:
+            if kw.lower() in text_lower:
+                return (True, display_name, f"Matched keyword '{kw}'", key)
+    return (False, "", "", "")
 
 
 # ═══════════════════════════════════════════
@@ -256,8 +293,6 @@ def _determine_job_category(item: JobItem, cfg: Config) -> str:
 
     if item.source_type == "Facebook":
         return "Facebook"
-    if item.is_large_company:
-        return "LargeCompany"
 
     engineer_kw = ["engineer", "エンジニア", "技術", "mechanical", "電気", "生産技術"]
     factory_kw = ["factory", "工場", "製造", "ライン", "作業", "組立", "倉庫", "物流", "フォークリフト"]
@@ -311,10 +346,15 @@ def _determine_fit(item: JobItem, cfg: Config) -> tuple[str, int]:
     elif item.employment_type == "派遣":
         score -= 0
 
-    # Large company bonus
-    if item.is_large_company:
-        score += 1
-        reasons.append("Large company")
+    # Large factory worksite scoring (neutral or penalty)
+    if item.is_large_factory_worksite:
+        has_salary = bool(item.salary and item.salary not in ("", "Unknown"))
+        has_area = bool(item.area and item.area not in ("", "Unknown"))
+        if has_salary and has_area:
+            score += 0  # neutral
+        else:
+            score -= 1  # insufficient info penalty
+            reasons.append("Large factory — missing info")
 
     # Local source bonus
     if item.source_type == "JOB Harima":
@@ -443,9 +483,35 @@ def normalize_raw_items(
                 area = (raw.get("area") or "").strip()
                 salary = (raw.get("salary") or "").strip()
                 url = (raw.get("url") or "").strip()
+                description = (raw.get("description") or "").strip()
 
-                # For official career sources, always mark as large company
+                # ── Official Career filtering logic ──
                 if is_official_career:
+                    # Check 1: Non-job content keywords
+                    combined_text = f"{title} {company} {description}"
+                    has_non_job_kw = any(
+                        kw in combined_text
+                        for kw in OFFICIAL_CAREER_NON_JOB_KEYWORDS
+                    )
+                    if has_non_job_kw:
+                        logger.debug("Rejected official_career: official_career_non_job_content — %s", title)
+                        continue
+
+                    # Check 2: Must have source_url (real job link)
+                    if not url:
+                        logger.debug("Rejected official_career: not_real_job_page (no url) — %s", title)
+                        continue
+
+                    # Check 3: Must contain at least one JOB_POSITIVE_KEYWORDS
+                    has_positive_kw = any(
+                        kw in combined_text
+                        for kw in JOB_POSITIVE_KEYWORDS
+                    )
+                    if not has_positive_kw:
+                        logger.debug("Rejected official_career: not_real_job_page (no job keywords) — %s", title)
+                        continue
+
+                    # Passes all checks — real job from large company
                     is_large_company = True
                 else:
                     # Match against both English and Japanese company names
@@ -471,6 +537,34 @@ def normalize_raw_items(
                     is_agency=_is_agency(source_name, title, company),
                     is_large_company=is_large_company,
                 )
+
+                # ── Large factory detection ──
+                if is_official_career and is_large_company:
+                    # Run detect_large_factory_worksite on title+company for extra info
+                    match_text = f"{title} {company}"
+                    is_match, display_name, match_reason, source_field = detect_large_factory_worksite(match_text)
+                    if is_match:
+                        item.is_large_factory_worksite = True
+                        item.large_factory_name = display_name
+                        item.large_factory_match_reason = match_reason
+                        item.large_factory_source = source_field
+                else:
+                    # Run detect_large_factory_worksite on title, description, company in order
+                    match_fields = [
+                        ("title", title),
+                        ("description", description),
+                        ("company", company),
+                    ]
+                    for field_name, field_value in match_fields:
+                        if not field_value:
+                            continue
+                        is_match, display_name, match_reason, source_field = detect_large_factory_worksite(field_value)
+                        if is_match:
+                            item.is_large_factory_worksite = True
+                            item.large_factory_name = display_name
+                            item.large_factory_match_reason = match_reason
+                            item.large_factory_source = field_name
+                            break
 
                 item.job_category = _determine_job_category(item, cfg)
                 fit_level, fit_score = _determine_fit(item, cfg)
@@ -658,6 +752,28 @@ def deduplicate(items: list[JobItem]) -> list[JobItem]:
                 is_dup = True
                 dup_sources.append(existing.source_name)
 
+        # 3. Agency + large factory dedup: same agency + same large_factory_name + similar area
+        if not is_dup and item.is_large_factory_worksite and item.is_agency and item.large_factory_name:
+            area_norm = _normalize_text(item.area)[:8] if item.area else ""
+            for existing in deduped:
+                if (existing.is_large_factory_worksite and existing.is_agency
+                        and existing.large_factory_name == item.large_factory_name):
+                    existing_area_norm = _normalize_text(existing.area)[:8] if existing.area else ""
+                    if area_norm and existing_area_norm and area_norm == existing_area_norm:
+                        # Keep the one with more complete info
+                        existing_completeness = _completeness_score(existing)
+                        item_completeness = _completeness_score(item)
+                        if item_completeness > existing_completeness:
+                            # New item is better — mark existing as duplicate, keep new one
+                            existing.is_duplicate = True
+                            if item.source_name not in existing.duplicate_sources:
+                                existing.duplicate_sources.append(item.source_name)
+                        else:
+                            # Existing is better — mark new item as duplicate
+                            is_dup = True
+                            dup_sources.append(existing.source_name)
+                        break
+
         if is_dup:
             item.is_duplicate = True
             item.duplicate_sources = dup_sources
@@ -742,8 +858,6 @@ def rank_items(items: list[JobItem]) -> list[JobItem]:
             _source_rank(i.source_type),
             # Completeness
             _completeness_score(i),
-            # Large company bonus
-            1 if i.is_large_company else 0,
             # Facebook lower priority
             0 if i.source_type == "Facebook" else 1,
         ),
@@ -801,7 +915,7 @@ def categorize_jobs(items: list[JobItem]) -> dict[str, Any]:
     priority_jobs = [i for i in kept if i.fit_level == "Cao"][:10]
     engineer_jobs = [i for i in kept if i.job_category == "Engineer"]
     factory_jobs = [i for i in kept if i.job_category == "Factory/Warehouse"]
-    large_company_jobs = [i for i in kept if i.is_large_company]
+    large_factory_jobs = [i for i in kept if i.is_large_factory_worksite]
     facebook_jobs = [i for i in kept if i.source_type == "Facebook"]
 
     return {
@@ -809,7 +923,7 @@ def categorize_jobs(items: list[JobItem]) -> dict[str, Any]:
         "priority_jobs": [i.to_dict() for i in priority_jobs],
         "engineer_jobs": [i.to_dict() for i in engineer_jobs],
         "factory_warehouse_jobs": [i.to_dict() for i in factory_jobs],
-        "large_company_jobs": [i.to_dict() for i in large_company_jobs],
+        "large_factory_jobs": [i.to_dict() for i in large_factory_jobs],
         "facebook_findings": [i.to_dict() for i in facebook_jobs],
         "removed_generic_count": len(removed_jobs),
     }
@@ -885,7 +999,7 @@ def build_telegram_summary(
     total = summary.get("total_matched", 0)
     engineer = summary.get("engineer_jobs", 0)
     factory = summary.get("factory_warehouse_jobs", 0)
-    large = summary.get("large_company_jobs", 0)
+    large = summary.get("large_factory_jobs", 0)
     facebook = summary.get("facebook_kept", 0)
     rejected_total = summary.get("rejected_total", 0)
     removed_generic = summary.get("removed_generic", 0)
@@ -894,7 +1008,7 @@ def build_telegram_summary(
     lines.append(f"• Tổng job phù hợp: {total}")
     lines.append(f"• Kỹ sư chuyển việc: {engineer}")
     lines.append(f"• LĐ phổ thông/xưởng/kho: {factory}")
-    lines.append(f"• Công ty lớn: {large}")
+    lines.append(f"• Nhà máy lớn: {large}")
     lines.append(f"• Facebook giữ lại: {facebook}")
     lines.append(f"• Tin bị loại: {rejected_total}")
     if removed_generic:
@@ -1076,7 +1190,7 @@ def run_pipeline(cfg_path: str, phase: str = "full") -> dict[str, Any]:
             "total_matched": kept_count,
             "engineer_jobs": len(categorized["engineer_jobs"]),
             "factory_warehouse_jobs": len(categorized["factory_warehouse_jobs"]),
-            "large_company_jobs": len(categorized["large_company_jobs"]),
+            "large_factory_jobs": len(categorized["large_factory_jobs"]),
             "facebook_kept": len(categorized["facebook_findings"]),
             "rejected_total": sum(rejected_counts.values()),
             "removed_generic": categorized.get("removed_generic_count", 0),
@@ -1179,7 +1293,7 @@ def _run_render_phase(
             return job
 
         for section in ("top_jobs", "priority_jobs", "engineer_jobs",
-                        "factory_warehouse_jobs", "large_company_jobs", "facebook_findings"):
+                        "factory_warehouse_jobs", "large_factory_jobs", "facebook_findings"):
             items = data.get(section, [])
             if items:
                 data[section] = [_sync(j) for j in items]
