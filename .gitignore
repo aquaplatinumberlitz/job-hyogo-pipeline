@@ -1,0 +1,30 @@
+# ── Sensitive data ──
+.references/
+credentials/
+*.cred.json
+*.cred
+
+# ── Python ──
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# ── Output reports (generated) ──
+reports/job_hyogo/job_hyogo_report_*.json
+reports/job_hyogo/job_hyogo_report_*.html
+reports/job_hyogo/job_hyogo_report_*_telegram.txt
+reports/job_hyogo/facebook_raw_*.json
+
+# ── Logs ──
+*.log
+*.log.*
+
+# ── OS ──
+.DS_Store
+Thumbs.db
+
+# ── Secrets in YAML (just in case) ──
+config/*.yaml.password
+config/*.secret.yaml
