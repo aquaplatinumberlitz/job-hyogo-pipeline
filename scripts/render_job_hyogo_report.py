@@ -171,7 +171,14 @@ def render_compact_card(job):
     url = job.get("source_url", "")
     link = f' <a href="{esc(url)}" target="_blank" rel="noopener" style="color:#c46a2b;font-size:0.82em;">🔗</a>' if url else ''
     badge_fit = badge(job.get("fit_level", ""), job.get("fit_level", "").lower().replace(" ", "-") if job.get("fit_level") else "generic")
-    return f'<div class="job-card" style="padding:10px 12px;"><strong>{esc(job.get("title",""))}</strong> · {esc(job.get("company",""))} · {esc(job.get("area",""))} · {esc(job.get("salary",""))} · {esc(job.get("employment_type",""))} {badge_fit}{link}</div>'
+    title = esc(job.get("title", ""))
+    company = esc(job.get("company", ""))
+    area = esc(job.get("area", ""))
+    salary = esc(job.get("salary", ""))
+    etype = esc(job.get("employment_type", ""))
+    why = job.get("why_notable", "")
+    why_line = f'<div style="font-size:0.78em;color:#475569;margin:2px 0 4px;">{esc(why)}</div>' if why else ''
+    return f'<div class="job-card" style="padding:10px 12px;"><strong>{title}</strong>{why_line}<div style="font-size:0.85em;color:#475569;">{company} · {area} · {salary} · {etype} {badge_fit}{link}</div></div>'
 
 def render_fb_item(item):
     parts = [f'<div class="fb-item">']

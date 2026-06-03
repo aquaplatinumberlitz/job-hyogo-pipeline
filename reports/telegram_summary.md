@@ -1,4 +1,4 @@
-**📋 Job Hyogo Report — 2026-06-03_05-44**
+**📋 Job Hyogo Report — 2026-06-03_05-50**
 
 📊 **Tổng quan:**
 • Tổng job phù hợp: 67
@@ -39,4 +39,4 @@
 • Xây dựng: 4
 • Khác: 4
 
-📁 Chi tiết: https://150.230.56.153:8002/job_hyogo_report_2026-06-03_05-44.html
+📁 Chi tiết: https://150.230.56.153:8002/job_hyogo_report_2026-06-03_05-50.html

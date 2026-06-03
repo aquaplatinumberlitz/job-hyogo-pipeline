@@ -373,6 +373,59 @@ def _is_agency(source_name: str, title: str, company: str) -> bool:
     return False
 
 
+def _generate_vn_description(item: JobItem) -> str:
+    """Generate a Vietnamese description for the job based on title and category."""
+    title = item.title.lower()
+    company = item.company.lower()
+    text = f"{title} {company}"
+
+    # Detect job type and generate description
+    desc = ""
+    if "メンテナンス" in text or "保守" in text or "保全" in text:
+        desc = "Cần tuyển nhân viên bảo trì/bảo dưỡng thiết bị, máy móc."
+    elif "フォークリフト" in text:
+        desc = "Cần tuyển lái xe nâng (forklift) vận chuyển hàng hóa trong kho/xưởng."
+    elif "組立" in text:
+        desc = "Cần tuyển công nhân lắp ráp linh kiện, sản phẩm."
+    elif "機械オペレーター" in text or "オペレーター" in text or "オペ" in text:
+        desc = "Cần tuyển nhân viên vận hành máy móc, thiết bị sản xuất."
+    elif "製造" in text or "生産" in text:
+        desc = "Cần tuyển công nhân sản xuất, chế tạo tại nhà máy."
+    elif "加工" in text:
+        desc = "Cần tuyển công nhân gia công, chế biến sản phẩm."
+    elif "検査" in text:
+        desc = "Cần tuyển nhân viên kiểm tra chất lượng sản phẩm."
+    elif "倉庫" in text or "物流" in text:
+        desc = "Cần tuyển nhân viên kho, vận chuyển, sắp xếp hàng hóa."
+    elif "包装" in text or "梱包" in text:
+        desc = "Cần tuyển công nhân đóng gói, bao bì sản phẩm."
+    elif "運転" in text or "ドライバー" in text:
+        desc = "Cần tuyển tài xế lái xe vận chuyển hàng hóa."
+    elif "通訳" in text or "翻訳" in text:
+        if "ベトナム" in text or "ベトナム語" in text:
+            desc = "Cần tuyển biên phiên dịch tiếng Việt-Nhật hỗ trợ người lao động Việt Nam."
+        else:
+            desc = "Cần tuyển biên phiên dịch tiếng Nhật."
+    elif "事務" in text:
+        desc = "Cần tuyển nhân viên văn phòng, hành chính."
+    elif "清掃" in text or "クリーニング" in text:
+        desc = "Cần tuyển nhân viên vệ sinh, lau dọn."
+    elif "厨房" in text or "調理" in text or "ホール" in text:
+        desc = "Cần tuyển nhân viên nhà hàng, chế biến thực phẩm."
+    elif "工場" in text or "ライン" in text:
+        desc = "Cần tuyển công nhân làm việc tại nhà máy, dây chuyền sản xuất."
+    elif "溶接" in text:
+        desc = "Cần tuyển thợ hàn, gia công kim loại."
+    elif "電気" in text or "電子" in text:
+        desc = "Cần tuyển nhân viên kỹ thuật điện/điện tử."
+    elif "CAD" in text or "設計" in text:
+        desc = "Cần tuyển nhân viên thiết kế kỹ thuật (CAD)."
+    elif "警備" in text or "ガード" in text:
+        desc = "Cần tuyển nhân viên bảo vệ, an ninh."
+
+    return desc
+
+
 def normalize_raw_items(
     raw_results: dict[str, list[RawItem]],
     cfg: Config,
@@ -424,6 +477,7 @@ def normalize_raw_items(
                 fit_level, fit_score = _determine_fit(item, cfg)
                 item.fit_level = fit_level
                 item.fit_score = fit_score
+                item.why_notable = _generate_vn_description(item)
 
                 items.append(item)
             except Exception as e:
