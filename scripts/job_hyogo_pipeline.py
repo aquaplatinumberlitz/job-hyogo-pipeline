@@ -803,7 +803,7 @@ def build_telegram_summary(
                 lines.append(f"• {label}: {val}")
         lines.append("")
 
-    lines.append(f"📁 Chi tiết: xem file HTML đính kèm.")
+    lines.append(f"📁 Chi tiết: https://150.230.56.153:8002/job_hyogo_report_{rd}.html")
     lines.append("")
 
     return "\n".join(lines)
@@ -836,6 +836,29 @@ def cleanup_old_reports(report_dir: str, keep: int = 10) -> None:
                 logger.warning("Failed to remove %s: %s", f.name, e)
 
     logger.info("Cleanup: kept %d reports, removed %d", min(len(report_files), keep), max(0, len(report_files) - keep))
+
+
+def copy_to_public_server(html_path: str, report_date: str) -> str | None:
+    """Copy HTML report to public image server directory (~/.hermes/cron/).
+
+    Returns the public URL if successful, None otherwise.
+    """
+    if not html_path or not os.path.exists(html_path):
+        logger.warning("HTML file not found, cannot copy to public server")
+        return None
+
+    public_dir = os.path.expanduser("~/.hermes/cron")
+    os.makedirs(public_dir, exist_ok=True)
+    dest = os.path.join(public_dir, f"job_hyogo_report_{report_date}.html")
+
+    try:
+        import shutil
+        shutil.copy2(html_path, dest)
+        logger.info("Copied HTML to public server: %s", dest)
+        return f"https://150.230.56.153:8002/job_hyogo_report_{report_date}.html"
+    except Exception as e:
+        logger.warning("Failed to copy HTML to public server: %s", e)
+        return None
 
 
 # ═══════════════════════════════════════════
@@ -923,6 +946,12 @@ def run_pipeline(cfg_path: str) -> dict[str, Any]:
 
     # 9. Render HTML
     html_path = render_html(json_path, cfg)
+
+    # 9b. Copy to public server
+    if html_path:
+        public_url = copy_to_public_server(html_path, report_date_hr)
+        if public_url:
+            logger.info("Public URL: %s", public_url)
 
     # 10. Telegram summary
     telegram_output = build_telegram_summary(data, cfg)
