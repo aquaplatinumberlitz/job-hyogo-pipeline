@@ -74,6 +74,11 @@ def render_job_card(job, show_link=True):
     parts.append(f'<div class="job-card">')
     parts.append(f'<div class="title">{esc(job.get("title", ""))}</div>')
 
+    # Vietnamese title (agent-reviewed translation)
+    title_vi = job.get("title_vi", "")
+    if title_vi:
+        parts.append(f'<div style="font-size:0.85em;color:#1f2933;margin:-2px 0 6px;">{esc(title_vi)}</div>')
+
     # Badges
     badges_html = ""
     cat = job.get("job_category", "")
@@ -172,13 +177,18 @@ def render_compact_card(job):
     link = f' <a href="{esc(url)}" target="_blank" rel="noopener" style="color:#c46a2b;font-size:0.82em;">🔗</a>' if url else ''
     badge_fit = badge(job.get("fit_level", ""), job.get("fit_level", "").lower().replace(" ", "-") if job.get("fit_level") else "generic")
     title = esc(job.get("title", ""))
+    title_vi = job.get("title_vi", "")
     company = esc(job.get("company", ""))
     area = esc(job.get("area", ""))
     salary = esc(job.get("salary", ""))
     etype = esc(job.get("employment_type", ""))
     why = job.get("why_notable", "")
-    why_line = f'<div style="font-size:0.78em;color:#475569;margin:2px 0 4px;">{esc(why)}</div>' if why else ''
-    return f'<div class="job-card" style="padding:10px 12px;"><strong>{title}</strong>{why_line}<div style="font-size:0.85em;color:#475569;">{company} · {area} · {salary} · {etype} {badge_fit}{link}</div></div>'
+    extras = ""
+    if title_vi:
+        extras += f'<div style="font-size:0.82em;color:#1f2933;margin:1px 0 2px;">{esc(title_vi)}</div>'
+    if why:
+        extras += f'<div style="font-size:0.78em;color:#475569;margin:2px 0 4px;">{esc(why)}</div>'
+    return f'<div class="job-card" style="padding:10px 12px;"><strong>{title}</strong>{extras}<div style="font-size:0.85em;color:#475569;">{company} · {area} · {salary} · {etype} {badge_fit}{link}</div></div>'
 
 def render_fb_item(item):
     parts = [f'<div class="fb-item">']

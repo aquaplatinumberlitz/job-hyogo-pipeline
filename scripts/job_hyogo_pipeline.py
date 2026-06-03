@@ -966,8 +966,12 @@ def copy_to_public_server(html_path: str, report_date: str) -> str | None:
 # ═══════════════════════════════════════════
 #  MAIN PIPELINE
 # ═══════════════════════════════════════════
-def run_pipeline(cfg_path: str) -> dict[str, Any]:
-    """Run the full job Hyogo pipeline end-to-end.
+def run_pipeline(cfg_path: str, phase: str = "full") -> dict[str, Any]:
+    """Run the job Hyogo pipeline.
+
+    Args:
+        cfg_path: Path to YAML config file.
+        phase: 'crawl' (stop after JSON export) | 'render' (read JSON → HTML + Telegram) | 'full' (do all)
 
     Returns a dict with paths and summary data for the caller.
     """
@@ -976,30 +980,23 @@ def run_pipeline(cfg_path: str) -> dict[str, Any]:
     report_date_hr = start_time.strftime("%Y-%m-%d_%H-%M")
 
     logger.info("=" * 60)
-    logger.info("Job Hyogo Pipeline starting")
+    logger.info(f"Job Hyogo Pipeline — phase={phase}")
     logger.info("Config: %s", cfg_path)
     logger.info("Date: %s", report_date)
     logger.info("=" * 60)
 
-    # 1. Load config
+    # ── RENDER PHASE: skip crawl, read latest enriched JSON ──
+    if phase == "render":
+        return _run_render_phase(cfg_path, report_date_hr, start_time)
+
+    # ── CRAWL / FULL PHASE: do everything up to JSON export ──
     cfg = load_config(cfg_path)
-
-    # 2. Crawl
     raw_results = crawl_all(cfg)
-
-    # 3. Normalize / Parse
     items = normalize_raw_items(raw_results, cfg)
-
-    # 4. Filter
     items, rejected_counts = filter_items(items, cfg)
-
-    # 5. Deduplicate
     items = deduplicate(items)
-
-    # 6. Rank
     items = rank_items(items)
 
-    # 7. Categorize
     report_dir = cfg.get("report", {}).get("output_dir", "reports")
     prefix = cfg.get("report", {}).get("filename_prefix", "job_hyogo_report")
     json_filename = f"{prefix}_{report_date}.json"
@@ -1008,7 +1005,6 @@ def run_pipeline(cfg_path: str) -> dict[str, Any]:
     report_dir_abs.mkdir(parents=True, exist_ok=True)
     json_path = str(report_dir_abs / json_filename)
 
-    # Source stats with display names
     display_names = {
         "jobhouse": "JobHouse",
         "job_harima": "JOB Harima",
@@ -1023,7 +1019,6 @@ def run_pipeline(cfg_path: str) -> dict[str, Any]:
         display = display_names.get(source_key, source_key)
         source_stats[display] = len(raw_list)
 
-    # Build data dict
     categorized = categorize_jobs(items)
     kept_count = len(items) - categorized.get("removed_generic_count", 0) - len(categorized.get("vietnamese_translation", []))
     data: dict[str, Any] = {
@@ -1046,22 +1041,120 @@ def run_pipeline(cfg_path: str) -> dict[str, Any]:
         "facebook_crawl_log": [],
     }
 
-    # 8. Export JSON
     json_path = export_json(data, json_path)
 
-    # 9. Render HTML
-    html_path = render_html(json_path, cfg)
+    # Write marker file so render phase can find the latest JSON
+    marker_path = Path(_SCRIPTS_DIR).parent / "reports" / ".latest_json.txt"
+    marker_path.write_text(json_path, encoding="utf-8")
+    logger.info("Marker written: %s → %s", marker_path, json_path)
 
-    # 9b. Copy to public server
+    # If crawl-only, stop here
+    if phase == "crawl":
+        elapsed = (datetime.now(timezone.utc) - start_time).total_seconds()
+        logger.info("Phase crawl complete in %.1f seconds", elapsed)
+        logger.info("JSON: %s", json_path)
+        return {
+            "json_path": json_path,
+            "html_path": None,
+            "telegram_path": "",
+            "total_items": len(items),
+            "elapsed_seconds": elapsed,
+        }
+
+    # ── FULL PHASE: continue to render ──
+    return _run_render_phase(cfg_path, report_date_hr, start_time, json_path=json_path, data=data, report_dir_abs=report_dir_abs)
+
+
+def _run_render_phase(
+    cfg_path: str,
+    report_date_hr: str,
+    start_time: datetime,
+    json_path: str | None = None,
+    data: dict[str, Any] | None = None,
+    report_dir_abs: Path | None = None,
+) -> dict[str, Any]:
+    """Render phase: read JSON → render HTML → copy to public server → Telegram summary."""
+    cfg = load_config(cfg_path)
+
+    # If no json_path passed, find latest from marker
+    if not json_path:
+        marker_path = Path(_SCRIPTS_DIR).parent / "reports" / ".latest_json.txt"
+        if marker_path.exists():
+            json_path = marker_path.read_text(encoding="utf-8").strip()
+            logger.info("Read marker: %s", json_path)
+        else:
+            # Fallback: find newest JSON in reports dir
+            report_dir = Path(_SCRIPTS_DIR).parent / cfg.get("report", {}).get("output_dir", "reports")
+            jsons = sorted(report_dir.glob("job_hyogo_report_*.json"), reverse=True)
+            if not jsons:
+                logger.error("No JSON files found in %s", report_dir)
+                return {"json_path": "", "html_path": None, "telegram_path": "", "total_items": 0, "elapsed_seconds": 0}
+            json_path = str(jsons[0])
+            logger.info("Fallback: newest JSON: %s", json_path)
+
+    # Read data from JSON (could have been enriched by agent review)
+    if not data:
+        with open(json_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        logger.info("Loaded JSON data: %s", json_path)
+
+    # Sync agent-review fields (title_vi, etc.) from all_jobs into category sections
+    all_jobs = data.get("all_jobs", [])
+    if all_jobs:
+        # Build lookup by index (or by id if available)
+        id_map: dict[str, dict] = {}
+        idx_map: dict[int, dict] = {}
+        for i, j in enumerate(all_jobs):
+            jid = j.get("id", "")
+            if jid:
+                id_map[jid] = j
+            else:
+                idx_map[i] = j
+
+        def _sync(job: dict) -> dict:
+            """Merge title_vi etc. from all_jobs into a category entry."""
+            jid = job.get("id", "")
+            if jid in id_map:
+                source = id_map[jid]
+            else:
+                # Fallback: try to find by title match
+                title = job.get("title", "")
+                for src in all_jobs:
+                    if src.get("title") == title:
+                        source = src
+                        break
+                else:
+                    return job  # no match found
+            for field in ("title_vi",):
+                if source.get(field):
+                    job[field] = source[field]
+            return job
+
+        for section in ("top_jobs", "priority_jobs", "engineer_jobs",
+                        "factory_warehouse_jobs", "large_company_jobs", "facebook_findings",
+                        "vietnamese_translation"):
+            items = data.get(section, [])
+            if items:
+                data[section] = [_sync(j) for j in items]
+
+        # Write enriched data back so renderer sees it
+        with open(json_path, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+        logger.info("Synced agent-review fields back to JSON")
+
+    # Determine report directories
+    report_dir_abs = report_dir_abs or Path(json_path).parent
+
+    # Render HTML
+    html_path = render_html(json_path, cfg)
+    public_url = None
     if html_path:
         public_url = copy_to_public_server(html_path, report_date_hr)
         if public_url:
             logger.info("Public URL: %s", public_url)
 
-    # 10. Telegram summary
+    # Telegram summary
     telegram_output = build_telegram_summary(data, cfg)
-
-    # Write telegram summary to file
     telegram_dir = cfg.get("telegram", {}).get("output_file", "reports/telegram_summary.md")
     telegram_path = Path(_SCRIPTS_DIR).parent / telegram_dir
     telegram_path.parent.mkdir(parents=True, exist_ok=True)
@@ -1069,14 +1162,13 @@ def run_pipeline(cfg_path: str) -> dict[str, Any]:
         f.write(telegram_output)
     logger.info("Telegram summary written: %s", telegram_path)
 
-    # 11. Cleanup old reports
+    # Cleanup old reports
     max_keep = safe_int(cfg.get("report", {}).get("max_reports_to_keep", 10), 10)
     cleanup_old_reports(str(report_dir_abs), keep=max_keep)
 
     elapsed = (datetime.now(timezone.utc) - start_time).total_seconds()
     logger.info("=" * 60)
-    logger.info("Pipeline complete in %.1f seconds", elapsed)
-    logger.info("JSON: %s", json_path)
+    logger.info("Phase render complete in %.1f seconds", elapsed)
     logger.info("HTML: %s", html_path or "N/A")
     logger.info("Telegram: %s", telegram_path)
     logger.info("=" * 60)
@@ -1085,7 +1177,8 @@ def run_pipeline(cfg_path: str) -> dict[str, Any]:
         "json_path": json_path,
         "html_path": html_path,
         "telegram_path": str(telegram_path),
-        "total_items": len(items),
+        "public_url": public_url,
+        "total_items": len(data.get("all_jobs", [])),
         "elapsed_seconds": elapsed,
     }
 
@@ -1097,6 +1190,12 @@ def main() -> None:
         "--config",
         default="config/job_hyogo.yaml",
         help="Path to YAML config file",
+    )
+    parser.add_argument(
+        "--phase",
+        default="full",
+        choices=["crawl", "render", "full"],
+        help="Pipeline phase: crawl (stop after JSON), render (read JSON → HTML), full (default: do all)",
     )
     parser.add_argument(
         "--log-level",
@@ -1118,18 +1217,29 @@ def main() -> None:
         stream=sys.stdout,
     )
 
-    result = run_pipeline(args.config)
+    result = run_pipeline(args.config, phase=args.phase)
 
     if args.dry_run:
         logger.info("DRY RUN: Skipped export/render/cleanup")
         return
 
-    print(f"\n✅ Pipeline complete!")
-    print(f"   JSON: {result['json_path']}")
-    print(f"   HTML: {result.get('html_path', 'N/A')}")
-    print(f"   Telegram: {result['telegram_path']}")
-    print(f"   Total jobs: {result['total_items']}")
-    print(f"   Elapsed: {result['elapsed_seconds']:.1f}s")
+    if args.phase == "crawl":
+        print(f"\n✅ Phase crawl complete!")
+        print(f"   JSON: {result['json_path']}")
+        print(f"   Total jobs: {result['total_items']}")
+        print(f"   📝 Review the JSON then run with --phase render")
+    elif args.phase == "render":
+        print(f"\n✅ Phase render complete!")
+        print(f"   HTML: {result.get('html_path', 'N/A')}")
+        print(f"   Telegram: {result['telegram_path']}")
+        print(f"   URL: {result.get('public_url', 'N/A')}")
+    else:
+        print(f"\n✅ Pipeline complete!")
+        print(f"   JSON: {result['json_path']}")
+        print(f"   HTML: {result.get('html_path', 'N/A')}")
+        print(f"   Telegram: {result['telegram_path']}")
+        print(f"   Total jobs: {result['total_items']}")
+        print(f"   Elapsed: {result['elapsed_seconds']:.1f}s")
 
 
 if __name__ == "__main__":

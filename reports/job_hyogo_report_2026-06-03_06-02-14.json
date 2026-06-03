@@ -1,13 +1,15 @@
 {
-  "report_date": "2026-06-03 05:33",
-  "report_timestamp": "2026-06-03T05:33:10.804855+00:00",
+  "report_date": "2026-06-03_06-02",
+  "report_timestamp": "2026-06-03T06:02:14.719548+00:00",
   "summary": {
-    "total_matched": 73,
+    "total_matched": 67,
     "engineer_jobs": 1,
-    "factory_warehouse_jobs": 40,
+    "factory_warehouse_jobs": 39,
     "large_company_jobs": 2,
     "facebook_kept": 0,
-    "rejected_total": 12
+    "rejected_total": 12,
+    "vietnamese_translation": 1,
+    "removed_generic": 5
   },
   "source_stats": {
     "JobHouse": 30,
@@ -30,7 +32,7 @@
   },
   "all_jobs": [
     {
-      "id": "b26ba3628341",
+      "id": "fb643972f744",
       "title": "営業【兵庫県全域及び近隣地区へのルート営業が主となります】",
       "company": "JOB Harima",
       "source_name": "JOB Harima",
@@ -54,10 +56,11 @@
       "is_large_company": false,
       "is_duplicate": false,
       "duplicate_sources": [],
-      "raw_title": "営業【兵庫県全域及び近隣地区へのルート営業が主となります】"
+      "raw_title": "営業【兵庫県全域及び近隣地区へのルート営業が主となります】",
+      "title_vi": "Tuyển gấp nhân viên bảo trì. Chào đón cả người Nhật và người nước ngoài (đang cư trú, thường trú)."
     },
     {
-      "id": "f2e1f444c365",
+      "id": "ac2dc041c400",
       "title": "洲本市",
       "company": "日本語教育事業のサポート（通訳翻訳・生活習慣等）新着クイックリサーチ協同組合",
       "source_name": "HelloWork",
@@ -74,17 +77,18 @@
       "fit_level": "Cao",
       "fit_score": 4,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển biên phiên dịch tiếng Nhật.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
       "is_large_company": false,
       "is_duplicate": false,
       "duplicate_sources": [],
-      "raw_title": "洲本市"
+      "raw_title": "洲本市",
+      "title_vi": "Tuyển nhân viên văn phòng kiêm hỗ trợ doanh nghiệp."
     },
     {
-      "id": "96e558bbf4d6",
+      "id": "eaa5438dae85",
       "title": "外国人（中国）就労者のサポート業務・通訳業務ビジネス・コープ協同組合",
       "company": "",
       "source_name": "HelloWork",
@@ -101,17 +105,18 @@
       "fit_level": "Cao",
       "fit_score": 4,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển biên phiên dịch tiếng Nhật.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
       "is_large_company": false,
       "is_duplicate": false,
       "duplicate_sources": [],
-      "raw_title": "外国人（中国）就労者のサポート業務・通訳業務ビジネス・コープ協同組合"
+      "raw_title": "外国人（中国）就労者のサポート業務・通訳業務ビジネス・コープ協同組合",
+      "title_vi": "Tuyển nhân viên lái xe nâng (forklift) tại Kakogawa. Lương cao, nghỉ thứ 7, CN, lễ."
     },
     {
-      "id": "e5eb431b480d",
+      "id": "d66ba6a8439e",
       "title": "外国人（ベトナム）就労者のサポート業務・通訳業務ビジネス・コープ協同組合",
       "company": "",
       "source_name": "HelloWork",
@@ -128,7 +133,7 @@
       "fit_level": "Cao",
       "fit_score": 4,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển biên phiên dịch tiếng Việt-Nhật hỗ trợ người lao động Việt Nam.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -138,7 +143,7 @@
       "raw_title": "外国人（ベトナム）就労者のサポート業務・通訳業務ビジネス・コープ協同組合"
     },
     {
-      "id": "358011b94666",
+      "id": "4aa41338c26f",
       "title": "メンテナンス（急募）日本人、外国籍（定住者、永住者）可能株式会社リック",
       "company": "",
       "source_name": "HelloWork",
@@ -155,17 +160,18 @@
       "fit_level": "Cao",
       "fit_score": 4,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển nhân viên bảo trì/bảo dưỡng thiết bị, máy móc.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
       "is_large_company": false,
       "is_duplicate": false,
       "duplicate_sources": [],
-      "raw_title": "メンテナンス（急募）日本人、外国籍（定住者、永住者）可能株式会社リック"
+      "raw_title": "メンテナンス（急募）日本人、外国籍（定住者、永住者）可能株式会社リック",
+      "title_vi": "Tuyển gấp nhân viên bảo trì. Chào đón cả người Nhật và người nước ngoài (đang cư trú, thường trú)."
     },
     {
-      "id": "44d5a6d23268",
+      "id": "a45225252ff9",
       "title": "正社員◆一般事務兼企業様巡回新着社名非公開",
       "company": "",
       "source_name": "HelloWork",
@@ -182,17 +188,18 @@
       "fit_level": "Cao",
       "fit_score": 4,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển nhân viên văn phòng, hành chính.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
       "is_large_company": false,
       "is_duplicate": false,
       "duplicate_sources": [],
-      "raw_title": "正社員◆一般事務兼企業様巡回新着社名非公開"
+      "raw_title": "正社員◆一般事務兼企業様巡回新着社名非公開",
+      "title_vi": "Tuyển nhân viên văn phòng kiêm hỗ trợ doanh nghiệp."
     },
     {
-      "id": "7d7251d6558a",
+      "id": "70f24c4e7404",
       "title": "【20代～50代活躍中】【加古川市】資格が活かせるフォークリフト作業／土日祝休み／20代～50代活躍中！／制服貸与あり",
       "company": "",
       "source_name": "工場ワークス",
@@ -209,17 +216,18 @@
       "fit_level": "Cao",
       "fit_score": 4,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển lái xe nâng (forklift) vận chuyển hàng hóa trong kho/xưởng.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
       "is_large_company": false,
       "is_duplicate": false,
       "duplicate_sources": [],
-      "raw_title": "【20代～50代活躍中】【加古川市】資格が活かせるフォークリフト作業／土日祝休み／20代～50代活躍中！／制服貸与あり"
+      "raw_title": "【20代～50代活躍中】【加古川市】資格が活かせるフォークリフト作業／土日祝休み／20代～50代活躍中！／制服貸与あり",
+      "title_vi": "Tuyển nhân viên lái xe nâng (forklift) tại Kakogawa."
     },
     {
-      "id": "018c5128debc",
+      "id": "6f49488bfeca",
       "title": "20～40代活躍中／工場でのお仕事が初めての方にオススメ！／月収例24.6万円【住宅用建材の制振部品の製造機械オペレーター】（No.HJ-11189-14-JP）",
       "company": "",
       "source_name": "工場ワークス",
@@ -236,7 +244,7 @@
       "fit_level": "Cao",
       "fit_score": 4,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển nhân viên vận hành máy móc, thiết bị sản xuất.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -246,7 +254,7 @@
       "raw_title": "20～40代活躍中／工場でのお仕事が初めての方にオススメ！／月収例24.6万円【住宅用建材の制振部品の製造機械オペレーター】（No.HJ-11189-14-JP）"
     },
     {
-      "id": "68e626130818",
+      "id": "06ffeb3f9219",
       "title": "＜明石市＞【高時給1,700円！】正社員前提20代～30代活躍中！未経験OK、航空エンジン部品の加工・組立・検査作業　兵庫県在住の方が活躍中！",
       "company": "",
       "source_name": "工場ワークス",
@@ -263,7 +271,7 @@
       "fit_level": "Cao",
       "fit_score": 4,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân lắp ráp linh kiện, sản phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -273,7 +281,7 @@
       "raw_title": "＜明石市＞【高時給1,700円！】正社員前提20代～30代活躍中！未経験OK、航空エンジン部品の加工・組立・検査作業　兵庫県在住の方が活躍中！"
     },
     {
-      "id": "c80c7ff7703b",
+      "id": "332280db4722",
       "title": "Peopleキャリア入社社員の声",
       "company": "Kawasaki Heavy",
       "source_name": "Kawasaki Heavy",
@@ -300,7 +308,7 @@
       "raw_title": "Peopleキャリア入社社員の声"
     },
     {
-      "id": "214929a47b87",
+      "id": "044fdaa6d9bd",
       "title": "04Peopleキャリア入社社員の声",
       "company": "Kawasaki Heavy",
       "source_name": "Kawasaki Heavy",
@@ -327,7 +335,7 @@
       "raw_title": "04Peopleキャリア入社社員の声"
     },
     {
-      "id": "028bd592f2c8",
+      "id": "ec4ef12a2d9a",
       "title": "居酒屋ホールスタッフ 社宅相談可",
       "company": "外国人応募可松屋インターナショナルフーズ株式会社",
       "source_name": "HelloWork",
@@ -344,7 +352,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển nhân viên nhà hàng, chế biến thực phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -354,7 +362,7 @@
       "raw_title": "居酒屋ホールスタッフ 社宅相談可"
     },
     {
-      "id": "20df62297c79",
+      "id": "9ea810da358b",
       "title": "コンビニスタッフ",
       "company": "外国人歓迎",
       "source_name": "HelloWork",
@@ -381,7 +389,7 @@
       "raw_title": "コンビニスタッフ"
     },
     {
-      "id": "b8bb431b7908",
+      "id": "ff94a8eac456",
       "title": "【神戸須磨シーワールド】調理スタッフ",
       "company": "外国人応募歓迎株式会社グランビスタホテル＆リゾート 神戸須磨シーワールド",
       "source_name": "HelloWork",
@@ -398,7 +406,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển nhân viên nhà hàng, chế biến thực phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -408,7 +416,7 @@
       "raw_title": "【神戸須磨シーワールド】調理スタッフ"
     },
     {
-      "id": "76dca6bd45b0",
+      "id": "98f484143dbf",
       "title": "【土日祝休み】月収例31万円以上可！制御装置の組立／直接雇用のチャンスあり◎／駅チカ徒歩8分／社宅完備＜兵庫県三田市＞《JBBN1C》",
       "company": "UTエージェント株式会社 関西第二CU",
       "source_name": "JobHouse",
@@ -425,7 +433,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân lắp ráp linh kiện, sản phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -435,7 +443,7 @@
       "raw_title": "【土日祝休み】月収例31万円以上可！制御装置の組立／直接雇用のチャンスあり◎／駅チカ徒歩8分／社宅完備＜兵庫県三田市＞《JBBN1C》"
     },
     {
-      "id": "248108cdb93b",
+      "id": "7a2a76ebec66",
       "title": "【20~40代活躍中】【月収例27万円以上◎】家電部品のピッキング・加工など／夜勤専属&土日はお休み／家具・家電付き社宅あり／未経験OK《JEEE1C》",
       "company": "UTエージェント株式会社 関西第二CU",
       "source_name": "JobHouse",
@@ -452,7 +460,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân gia công, chế biến sản phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -462,7 +470,7 @@
       "raw_title": "【20~40代活躍中】【月収例27万円以上◎】家電部品のピッキング・加工など／夜勤専属&土日はお休み／家具・家電付き社宅あり／未経験OK《JEEE1C》"
     },
     {
-      "id": "40f26f1441b1",
+      "id": "55a120a03537",
       "title": "【20~40代活躍中】【日勤&土日休み♪】家電部品の機械操作・目視検査など！重量物基本なし＆モクモク作業◎明るい髪色OK♪20代～40代男女活躍中！＜神戸市西区＞JVCE1C《JVCE1C》",
       "company": "UTエージェント株式会社 関西第二CU",
       "source_name": "JobHouse",
@@ -479,7 +487,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển nhân viên kiểm tra chất lượng sản phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -489,7 +497,7 @@
       "raw_title": "【20~40代活躍中】【日勤&土日休み♪】家電部品の機械操作・目視検査など！重量物基本なし＆モクモク作業◎明るい髪色OK♪20代～40代男女活躍中！＜神戸市西区＞JVCE1C《JVCE1C》"
     },
     {
-      "id": "00f92b1843db",
+      "id": "b0c1dcbfd272",
       "title": "【20~40代活躍中】【精密部品の組付け・入出庫作業】未経験活躍中！／日勤＆土日祝休み♪／年休122日／残業ほぼなし！／複数名大募集《JYDP1C》",
       "company": "UTエージェント株式会社 関西第二CU",
       "source_name": "JobHouse",
@@ -516,7 +524,7 @@
       "raw_title": "【20~40代活躍中】【精密部品の組付け・入出庫作業】未経験活躍中！／日勤＆土日祝休み♪／年休122日／残業ほぼなし！／複数名大募集《JYDP1C》"
     },
     {
-      "id": "d0c865256b7f",
+      "id": "7d528479ecfb",
       "title": "月収31万円可+入社後6ヶ月限定で4万円の特別手当あり！ミニボーナス10万円★土日祝休＆年休126日♪50代活躍中☆かんたん作業◎駅近通勤！小型部品の組立《JBBN1C》",
       "company": "UTエージェント株式会社 関西第二CU",
       "source_name": "JobHouse",
@@ -533,7 +541,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân lắp ráp linh kiện, sản phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -543,7 +551,7 @@
       "raw_title": "月収31万円可+入社後6ヶ月限定で4万円の特別手当あり！ミニボーナス10万円★土日祝休＆年休126日♪50代活躍中☆かんたん作業◎駅近通勤！小型部品の組立《JBBN1C》"
     },
     {
-      "id": "16457152d992",
+      "id": "8a4fa09624a0",
       "title": "【20~40代活躍中】【電子部品の検査など】月収32万円可／駅チカ徒歩8分／大手電機メーカー／夜勤専属《JBCV1C》",
       "company": "UTエージェント株式会社 関西第二CU",
       "source_name": "JobHouse",
@@ -560,7 +568,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển nhân viên kiểm tra chất lượng sản phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -570,7 +578,7 @@
       "raw_title": "【20~40代活躍中】【電子部品の検査など】月収32万円可／駅チカ徒歩8分／大手電機メーカー／夜勤専属《JBCV1C》"
     },
     {
-      "id": "229c20d27dd4",
+      "id": "802f524512f2",
       "title": "【20~40代活躍中】【駅チカ徒歩8分♪】大手電機メーカー★電子部品の検査など！月収32万円可♪夜勤専属◎《JBCV1C》",
       "company": "UTエージェント株式会社 関西第二CU",
       "source_name": "JobHouse",
@@ -587,7 +595,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển nhân viên kiểm tra chất lượng sản phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -597,7 +605,7 @@
       "raw_title": "【20~40代活躍中】【駅チカ徒歩8分♪】大手電機メーカー★電子部品の検査など！月収32万円可♪夜勤専属◎《JBCV1C》"
     },
     {
-      "id": "c4200d4ddca6",
+      "id": "5f121a7f03ad",
       "title": "【20~40代活躍中】【汎用ロボットの組立・検査】月収29万円可／日勤＆土日祝休み／未経験OK《JDPE1C》",
       "company": "UTエージェント株式会社 関西第二CU",
       "source_name": "JobHouse",
@@ -614,7 +622,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân lắp ráp linh kiện, sản phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -624,7 +632,7 @@
       "raw_title": "【20~40代活躍中】【汎用ロボットの組立・検査】月収29万円可／日勤＆土日祝休み／未経験OK《JDPE1C》"
     },
     {
-      "id": "1645931f8902",
+      "id": "9dc4ad50a41b",
       "title": "【20~30代活躍中】★継続支援金10万円★【月収30万円可】未経験OKのエンジン部品製造オペレーター・検査◎土日祝休み＆働きやすい職場♪社宅費全額補助！《JFOL2C》",
       "company": "UTエージェント株式会社 関西第二CU",
       "source_name": "JobHouse",
@@ -641,7 +649,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển nhân viên vận hành máy móc, thiết bị sản xuất.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -651,7 +659,7 @@
       "raw_title": "【20~30代活躍中】★継続支援金10万円★【月収30万円可】未経験OKのエンジン部品製造オペレーター・検査◎土日祝休み＆働きやすい職場♪社宅費全額補助！《JFOL2C》"
     },
     {
-      "id": "6d6cc1c31a46",
+      "id": "2045f54ecda9",
       "title": "【20~40代活躍中】【夜勤専属&土日休み】高収入☆月収27万円可！未経験OK◎家電部品のピッキング・加工など♪《JEEE1C》",
       "company": "UTエージェント株式会社 関西第二CU",
       "source_name": "JobHouse",
@@ -668,7 +676,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân gia công, chế biến sản phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -678,7 +686,7 @@
       "raw_title": "【20~40代活躍中】【夜勤専属&土日休み】高収入☆月収27万円可！未経験OK◎家電部品のピッキング・加工など♪《JEEE1C》"
     },
     {
-      "id": "c71610fe8ab2",
+      "id": "a2539b707987",
       "title": "【20~30代活躍中】【高時給2、000円】製品の管理・出荷など★社宅費全額補助◎スキル・経験を活かせる！資格取得支援あり◎《Jcci1C》",
       "company": "UTエージェント株式会社 関西第二CU",
       "source_name": "JobHouse",
@@ -705,7 +713,7 @@
       "raw_title": "【20~30代活躍中】【高時給2、000円】製品の管理・出荷など★社宅費全額補助◎スキル・経験を活かせる！資格取得支援あり◎《Jcci1C》"
     },
     {
-      "id": "0e1f10437b9e",
+      "id": "734415e77c3f",
       "title": "【20~40代活躍中】【樹脂製品の検査・選別】日勤＆土日祝休み☆未経験活躍中／残業少なめ／空調完備で快適♪／キレイな食堂あり《Jaul1C》",
       "company": "UTエージェント株式会社 関西第二CU",
       "source_name": "JobHouse",
@@ -722,7 +730,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển nhân viên kiểm tra chất lượng sản phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -732,7 +740,7 @@
       "raw_title": "【20~40代活躍中】【樹脂製品の検査・選別】日勤＆土日祝休み☆未経験活躍中／残業少なめ／空調完備で快適♪／キレイな食堂あり《Jaul1C》"
     },
     {
-      "id": "1f319fab71b3",
+      "id": "6627785457e7",
       "title": "【20~40代活躍中】日勤＆土日休み♪家電部品の簡単な機械操作・目視検査！モクモク作業◎髪型自由♪《JVCE1C》",
       "company": "UTエージェント株式会社 関西第二CU",
       "source_name": "JobHouse",
@@ -749,7 +757,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển nhân viên kiểm tra chất lượng sản phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -759,7 +767,7 @@
       "raw_title": "【20~40代活躍中】日勤＆土日休み♪家電部品の簡単な機械操作・目視検査！モクモク作業◎髪型自由♪《JVCE1C》"
     },
     {
-      "id": "4d12009eb00e",
+      "id": "6d47e84e9cc6",
       "title": "【20~40代活躍中】【月収30万円可】カーナビ用の電子部品の機械オペレーター！土日祝休み♪駅チカ徒歩8分！《JODA1C》",
       "company": "UTエージェント株式会社 関西第二CU",
       "source_name": "JobHouse",
@@ -776,7 +784,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển nhân viên vận hành máy móc, thiết bị sản xuất.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -786,7 +794,7 @@
       "raw_title": "【20~40代活躍中】【月収30万円可】カーナビ用の電子部品の機械オペレーター！土日祝休み♪駅チカ徒歩8分！《JODA1C》"
     },
     {
-      "id": "9c6a6f9dc5dd",
+      "id": "265f8626d9d2",
       "title": "【20~30代活躍中】【土日祝休み】大手電機メーカーで一般事務♪転籍支援制度あり！駅チカ徒歩8分☆PCスキルを生かせる♪《JPTQ1C》",
       "company": "UTエージェント株式会社 関西第二CU",
       "source_name": "JobHouse",
@@ -803,7 +811,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển nhân viên văn phòng, hành chính.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -813,7 +821,7 @@
       "raw_title": "【20~30代活躍中】【土日祝休み】大手電機メーカーで一般事務♪転籍支援制度あり！駅チカ徒歩8分☆PCスキルを生かせる♪《JPTQ1C》"
     },
     {
-      "id": "dde87c0fa36c",
+      "id": "d7f5cacd5b41",
       "title": "【20~40代活躍中】★6月入社限定！入社祝金10万円★軽作業×月収28万円可☆部品の塗装・検査・組立◇社宅費補助あり&充実の食堂♪未経験OK！《Jbnd1C》",
       "company": "UTエージェント株式会社 関西第二CU",
       "source_name": "JobHouse",
@@ -830,7 +838,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân lắp ráp linh kiện, sản phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -840,7 +848,7 @@
       "raw_title": "【20~40代活躍中】★6月入社限定！入社祝金10万円★軽作業×月収28万円可☆部品の塗装・検査・組立◇社宅費補助あり&充実の食堂♪未経験OK！《Jbnd1C》"
     },
     {
-      "id": "e2f14bd94a8f",
+      "id": "3d19d47e91d7",
       "title": "【20~40代活躍中】【未経験歓迎】機器の組付け作業☆日勤＆土日祝休み♪年休122日☆残業ほぼなし！複数名大募集◎《JYDP1C》",
       "company": "UTエージェント株式会社 関西第二CU",
       "source_name": "JobHouse",
@@ -867,7 +875,7 @@
       "raw_title": "【20~40代活躍中】【未経験歓迎】機器の組付け作業☆日勤＆土日祝休み♪年休122日☆残業ほぼなし！複数名大募集◎《JYDP1C》"
     },
     {
-      "id": "e2e46fc30286",
+      "id": "6e7e7bdb59b0",
       "title": "【20~40代活躍中】【もくもく作業】プラスチック部品の目視検査★無料送迎あり！社宅費全額補助あり♪日勤×土日休み♪《JACL1-PC》",
       "company": "UTエージェント株式会社 関西第二CU",
       "source_name": "JobHouse",
@@ -884,7 +892,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển nhân viên kiểm tra chất lượng sản phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -894,7 +902,7 @@
       "raw_title": "【20~40代活躍中】【もくもく作業】プラスチック部品の目視検査★無料送迎あり！社宅費全額補助あり♪日勤×土日休み♪《JACL1-PC》"
     },
     {
-      "id": "05101ff5e92e",
+      "id": "c69f2ac5307f",
       "title": "【20~40代活躍中】【月収29万円可×年休171日】自動車部品のフォークリフト運搬・在庫管理♪社宅費補助あり！《JMWS1C》",
       "company": "UTエージェント株式会社 関西第二CU",
       "source_name": "JobHouse",
@@ -911,7 +919,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển lái xe nâng (forklift) vận chuyển hàng hóa trong kho/xưởng.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -921,7 +929,7 @@
       "raw_title": "【20~40代活躍中】【月収29万円可×年休171日】自動車部品のフォークリフト運搬・在庫管理♪社宅費補助あり！《JMWS1C》"
     },
     {
-      "id": "091397824d98",
+      "id": "27999ca46e58",
       "title": "日勤×土日祝休み☆定着支援金10万円◎力仕事ほぼナシ♪駅徒歩8分！小型部品の組立・検査◇入社後6ヶ月限定！特別手当込みで月収例28万円可◎《JBBE1C》",
       "company": "UTエージェント株式会社 関西第二CU",
       "source_name": "JobHouse",
@@ -938,7 +946,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân lắp ráp linh kiện, sản phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -948,7 +956,7 @@
       "raw_title": "日勤×土日祝休み☆定着支援金10万円◎力仕事ほぼナシ♪駅徒歩8分！小型部品の組立・検査◇入社後6ヶ月限定！特別手当込みで月収例28万円可◎《JBBE1C》"
     },
     {
-      "id": "98b3a12d52b8",
+      "id": "b7f8ef6562e9",
       "title": "【20~30代活躍中】★継続支援金10万円★【土日祝休み】年休130日×月収30万円可！自動車部品の加工や検査！直接雇用の可能性あり♪社宅費全額補助◎《JFOL1C》",
       "company": "UTエージェント株式会社 関西第二CU",
       "source_name": "JobHouse",
@@ -965,7 +973,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân gia công, chế biến sản phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -975,7 +983,7 @@
       "raw_title": "【20~30代活躍中】★継続支援金10万円★【土日祝休み】年休130日×月収30万円可！自動車部品の加工や検査！直接雇用の可能性あり♪社宅費全額補助◎《JFOL1C》"
     },
     {
-      "id": "c7af54a88d33",
+      "id": "13c1e222892c",
       "title": "【20~40代活躍中】夜勤専属★月収30万円可！経験活かせる♪食品倉庫内でフォークリフト運搬作業など☆残業少なめ《JVCV1C》",
       "company": "UTエージェント株式会社 関西第二CU",
       "source_name": "JobHouse",
@@ -992,7 +1000,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển lái xe nâng (forklift) vận chuyển hàng hóa trong kho/xưởng.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -1002,7 +1010,7 @@
       "raw_title": "【20~40代活躍中】夜勤専属★月収30万円可！経験活かせる♪食品倉庫内でフォークリフト運搬作業など☆残業少なめ《JVCV1C》"
     },
     {
-      "id": "26ce1f502f19",
+      "id": "ba035c6ae1d8",
       "title": "【20~40代活躍中】【月収27万円可】クレーンや玉掛など資格が活かせる！プレス製品の解体・運搬♪社宅費補助あり◎《JOBR1C》",
       "company": "UTエージェント株式会社 関西第二CU",
       "source_name": "JobHouse",
@@ -1029,7 +1037,7 @@
       "raw_title": "【20~40代活躍中】【月収27万円可】クレーンや玉掛など資格が活かせる！プレス製品の解体・運搬♪社宅費補助あり◎《JOBR1C》"
     },
     {
-      "id": "c83492cb34e5",
+      "id": "a340b1f73a55",
       "title": "【20~40代活躍中】機械オペレーター・リフト運搬！資格が活かせる◎茶髪OK☆マイカー通勤OK♪土日祝休み！《JRSF1C》",
       "company": "UTエージェント株式会社 関西第二CU",
       "source_name": "JobHouse",
@@ -1046,7 +1054,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển nhân viên vận hành máy móc, thiết bị sản xuất.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -1056,7 +1064,7 @@
       "raw_title": "【20~40代活躍中】機械オペレーター・リフト運搬！資格が活かせる◎茶髪OK☆マイカー通勤OK♪土日祝休み！《JRSF1C》"
     },
     {
-      "id": "78f4dec723a3",
+      "id": "27aa451760ea",
       "title": "即入寮OK／20～40代活躍中／細かいモクモク作業がお好きな方にオススメ♪／月収例27.3万円【飲料缶の目視検査】（No.HJ-11446-03-JP）",
       "company": "",
       "source_name": "工場ワークス",
@@ -1073,7 +1081,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển nhân viên kiểm tra chất lượng sản phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -1083,7 +1091,7 @@
       "raw_title": "即入寮OK／20～40代活躍中／細かいモクモク作業がお好きな方にオススメ♪／月収例27.3万円【飲料缶の目視検査】（No.HJ-11446-03-JP）"
     },
     {
-      "id": "0cf34d7b14e7",
+      "id": "f82c21ab0304",
       "title": "【20代～40代活躍中】【加古川市】高時給1,550円！／石炭の加工・運搬／日勤／土日祝休み／未経験者も活躍中！",
       "company": "",
       "source_name": "工場ワークス",
@@ -1100,7 +1108,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân gia công, chế biến sản phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -1110,7 +1118,7 @@
       "raw_title": "【20代～40代活躍中】【加古川市】高時給1,550円！／石炭の加工・運搬／日勤／土日祝休み／未経験者も活躍中！"
     },
     {
-      "id": "ea3767f9d8b5",
+      "id": "460c319be03f",
       "title": "【20代～50代活躍中】［加古川市］《高時給1,700円》空港や物流で使う部品の成形・検査・梱包作業／未経験歓迎／交替勤務で稼げる",
       "company": "",
       "source_name": "工場ワークス",
@@ -1127,7 +1135,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển nhân viên kiểm tra chất lượng sản phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -1137,7 +1145,7 @@
       "raw_title": "【20代～50代活躍中】［加古川市］《高時給1,700円》空港や物流で使う部品の成形・検査・梱包作業／未経験歓迎／交替勤務で稼げる"
     },
     {
-      "id": "9025bddf5046",
+      "id": "205c9cf9d78d",
       "title": "★＜加古川市＞石炭コークスの分析・データ整理/日払いOK【経験不問！未経験◎】高収入ワーク！ちょこっと残業あり♪20代多数活躍中！",
       "company": "",
       "source_name": "工場ワークス",
@@ -1164,7 +1172,7 @@
       "raw_title": "★＜加古川市＞石炭コークスの分析・データ整理/日払いOK【経験不問！未経験◎】高収入ワーク！ちょこっと残業あり♪20代多数活躍中！"
     },
     {
-      "id": "bc8138f85d46",
+      "id": "7f255ca7caf5",
       "title": "★＜加古川市＞活性炭の製造・運搬/日払いOK【経験不問！未経験◎】憧れの高収入Work！！モノ足りない方に・残業20H未満♪",
       "company": "",
       "source_name": "工場ワークス",
@@ -1181,7 +1189,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân sản xuất, chế tạo tại nhà máy.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -1191,7 +1199,7 @@
       "raw_title": "★＜加古川市＞活性炭の製造・運搬/日払いOK【経験不問！未経験◎】憧れの高収入Work！！モノ足りない方に・残業20H未満♪"
     },
     {
-      "id": "9d81b1f7eac8",
+      "id": "a721bd31c8a6",
       "title": "★＜加古川市＞フォークリフト/日払いOK【寮完備！】初心者カンゲイ♪高収入ワーク！程よい残業でお小遣い稼ぎ♪",
       "company": "",
       "source_name": "工場ワークス",
@@ -1208,7 +1216,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển lái xe nâng (forklift) vận chuyển hàng hóa trong kho/xưởng.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -1218,7 +1226,7 @@
       "raw_title": "★＜加古川市＞フォークリフト/日払いOK【寮完備！】初心者カンゲイ♪高収入ワーク！程よい残業でお小遣い稼ぎ♪"
     },
     {
-      "id": "d6c601376397",
+      "id": "193ed220694c",
       "title": "【20代～60代活躍中】［加古川市］倉庫内でリーチリフトを使って入出荷作業／高時給1,400円／コンビニ製品の取り扱い／屋内作業で快適作業",
       "company": "",
       "source_name": "工場ワークス",
@@ -1235,7 +1243,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển nhân viên kho, vận chuyển, sắp xếp hàng hóa.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -1245,7 +1253,7 @@
       "raw_title": "【20代～60代活躍中】［加古川市］倉庫内でリーチリフトを使って入出荷作業／高時給1,400円／コンビニ製品の取り扱い／屋内作業で快適作業"
     },
     {
-      "id": "da55142d35a3",
+      "id": "28f0ff8b2d82",
       "title": "＜加古川市＞【月収28万円可】未経験歓迎◎大手メーカーで製鉄設備の保守・点検！日勤&送迎あり◎直接雇用のチャンス★【履歴書不要☆オンライン面接OK】【入社キャンペーン実施中！】",
       "company": "",
       "source_name": "工場ワークス",
@@ -1262,7 +1270,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển nhân viên bảo trì/bảo dưỡng thiết bị, máy móc.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -1272,7 +1280,7 @@
       "raw_title": "＜加古川市＞【月収28万円可】未経験歓迎◎大手メーカーで製鉄設備の保守・点検！日勤&送迎あり◎直接雇用のチャンス★【履歴書不要☆オンライン面接OK】【入社キャンペーン実施中！】"
     },
     {
-      "id": "58d546867e2a",
+      "id": "e68f16da2166",
       "title": "【20代～50代活躍中】［加古川市］＜資格が活かせる！高時給1500円＞フォークリフト作業／交替勤務／20代～50代活躍中／制服貸与あり",
       "company": "",
       "source_name": "工場ワークス",
@@ -1289,7 +1297,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển lái xe nâng (forklift) vận chuyển hàng hóa trong kho/xưởng.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -1299,7 +1307,7 @@
       "raw_title": "【20代～50代活躍中】［加古川市］＜資格が活かせる！高時給1500円＞フォークリフト作業／交替勤務／20代～50代活躍中／制服貸与あり"
     },
     {
-      "id": "f4030031f91d",
+      "id": "2a7aa83532a8",
       "title": "工場で原料の入出荷・リフト作業／時給1500円／寮完備［月収例］23.6万円以上可",
       "company": "",
       "source_name": "工場ワークス",
@@ -1316,7 +1324,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân làm việc tại nhà máy, dây chuyền sản xuất.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -1326,7 +1334,7 @@
       "raw_title": "工場で原料の入出荷・リフト作業／時給1500円／寮完備［月収例］23.6万円以上可"
     },
     {
-      "id": "134b37f2fb18",
+      "id": "101739e68910",
       "title": "＜加古川市＞月収27万円可★航空機エンジン部品の製造／機械オペレーター◆未経験可！直接雇用の可能性あり【履歴書不要☆オンライン面接OK】【入社キャンペーン実施中！】",
       "company": "",
       "source_name": "工場ワークス",
@@ -1343,7 +1351,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển nhân viên vận hành máy móc, thiết bị sản xuất.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -1353,7 +1361,7 @@
       "raw_title": "＜加古川市＞月収27万円可★航空機エンジン部品の製造／機械オペレーター◆未経験可！直接雇用の可能性あり【履歴書不要☆オンライン面接OK】【入社キャンペーン実施中！】"
     },
     {
-      "id": "cc665401e92b",
+      "id": "fc9effb3ee31",
       "title": "【20代～40代活躍中】［加古川市］石炭の製造オペレーター／未経験OK／ドリンク無料提供あり／3交替×高時給1600円でシッカリ稼げる◎",
       "company": "",
       "source_name": "工場ワークス",
@@ -1370,7 +1378,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển nhân viên vận hành máy móc, thiết bị sản xuất.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -1380,7 +1388,7 @@
       "raw_title": "【20代～40代活躍中】［加古川市］石炭の製造オペレーター／未経験OK／ドリンク無料提供あり／3交替×高時給1600円でシッカリ稼げる◎"
     },
     {
-      "id": "1fa687324130",
+      "id": "a8cb00bf9f4e",
       "title": "◇＜加古川市＞ガスタービン部品の加工・計測/日払いOK【未経験者カンゲイ♪】ガッツリ稼げる残業月20H以上！",
       "company": "",
       "source_name": "工場ワークス",
@@ -1397,7 +1405,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân gia công, chế biến sản phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -1407,7 +1415,7 @@
       "raw_title": "◇＜加古川市＞ガスタービン部品の加工・計測/日払いOK【未経験者カンゲイ♪】ガッツリ稼げる残業月20H以上！"
     },
     {
-      "id": "20a63b10aedc",
+      "id": "45e00099f8fa",
       "title": "◇＜加古川市＞ショベルカー部品の溶接・加工/日払いOK【未経験スタートOK！】残業もあるのでガッツリ稼げます！ヘアスタイル自由☆",
       "company": "",
       "source_name": "工場ワークス",
@@ -1424,7 +1432,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân gia công, chế biến sản phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -1434,7 +1442,7 @@
       "raw_title": "◇＜加古川市＞ショベルカー部品の溶接・加工/日払いOK【未経験スタートOK！】残業もあるのでガッツリ稼げます！ヘアスタイル自由☆"
     },
     {
-      "id": "8a4772703f13",
+      "id": "77948f99c7a4",
       "title": "工場で機械部品の溶接サポート／時給1450円／未経験可［月収例］27.9万円以上可",
       "company": "",
       "source_name": "工場ワークス",
@@ -1451,7 +1459,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân làm việc tại nhà máy, dây chuyền sản xuất.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -1461,7 +1469,7 @@
       "raw_title": "工場で機械部品の溶接サポート／時給1450円／未経験可［月収例］27.9万円以上可"
     },
     {
-      "id": "47f66fbb4f66",
+      "id": "dcfb8eb90fe4",
       "title": "＜加古川市＞【未経験歓迎】金属ロープの機械加工☆駅チカ徒歩10分♪長期休暇あり◎マイカー通勤OK♪【履歴書不要☆オンライン面接OK】【入社キャンペーン実施中！】",
       "company": "",
       "source_name": "工場ワークス",
@@ -1478,7 +1486,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân gia công, chế biến sản phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -1488,7 +1496,7 @@
       "raw_title": "＜加古川市＞【未経験歓迎】金属ロープの機械加工☆駅チカ徒歩10分♪長期休暇あり◎マイカー通勤OK♪【履歴書不要☆オンライン面接OK】【入社キャンペーン実施中！】"
     },
     {
-      "id": "794406093d58",
+      "id": "0e9598077fcc",
       "title": "工場で機械部品の溶接／時給1300円／寮完備／未経験可［月収例］25万円以上可",
       "company": "",
       "source_name": "工場ワークス",
@@ -1505,7 +1513,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân làm việc tại nhà máy, dây chuyền sản xuất.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -1515,7 +1523,7 @@
       "raw_title": "工場で機械部品の溶接／時給1300円／寮完備／未経験可［月収例］25万円以上可"
     },
     {
-      "id": "b1f758a1c2b4",
+      "id": "504182496b86",
       "title": "即入寮OK／20～40代活躍中／これまでの経験を活かして働きたい方へ◎／月収例32.9万円【飲料缶の大きさ・太さ・材質に合わせて製造ラインの調整】（No.HJ-11446-04-JP）",
       "company": "",
       "source_name": "工場ワークス",
@@ -1532,7 +1540,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân sản xuất, chế tạo tại nhà máy.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -1542,7 +1550,7 @@
       "raw_title": "即入寮OK／20～40代活躍中／これまでの経験を活かして働きたい方へ◎／月収例32.9万円【飲料缶の大きさ・太さ・材質に合わせて製造ラインの調整】（No.HJ-11446-04-JP）"
     },
     {
-      "id": "437a28d1b609",
+      "id": "4207c6a254aa",
       "title": "【20代～40代活躍中】［加古川市］ネジの入出庫とリフト作業／高時給1,350円／カウンター・リーチ両方使用／手作業ありでメリハリ抜群",
       "company": "",
       "source_name": "工場ワークス",
@@ -1569,7 +1577,7 @@
       "raw_title": "【20代～40代活躍中】［加古川市］ネジの入出庫とリフト作業／高時給1,350円／カウンター・リーチ両方使用／手作業ありでメリハリ抜群"
     },
     {
-      "id": "4fc9ca41fe63",
+      "id": "3d018b63d7ff",
       "title": "＜加古川市＞【日勤×土日祝休み】金属製品の検査、測定業務！【空調完備】【履歴書不要☆オンライン面接OK】【入社キャンペーン実施中！】",
       "company": "",
       "source_name": "工場ワークス",
@@ -1586,7 +1594,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển nhân viên kiểm tra chất lượng sản phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -1596,7 +1604,7 @@
       "raw_title": "＜加古川市＞【日勤×土日祝休み】金属製品の検査、測定業務！【空調完備】【履歴書不要☆オンライン面接OK】【入社キャンペーン実施中！】"
     },
     {
-      "id": "990a2f5c1c12",
+      "id": "c4130a2cb35b",
       "title": "＜加古川市＞【月収31万円可】活性炭の製造業務！マイカー通勤OK♪未経験歓迎☆売店完備！送迎バスあり◎【履歴書不要☆オンライン面接OK】【入社キャンペーン実施中！】",
       "company": "",
       "source_name": "工場ワークス",
@@ -1613,7 +1621,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân sản xuất, chế tạo tại nhà máy.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -1623,7 +1631,7 @@
       "raw_title": "＜加古川市＞【月収31万円可】活性炭の製造業務！マイカー通勤OK♪未経験歓迎☆売店完備！送迎バスあり◎【履歴書不要☆オンライン面接OK】【入社キャンペーン実施中！】"
     },
     {
-      "id": "e3a0e0e9673b",
+      "id": "9aa740fcf5c8",
       "title": "◇＜加古川市＞建機アーム部品の機械加工/日払いOK【未経験から安心スタート♪】収入重視派さんに！残業20H以上！！",
       "company": "",
       "source_name": "工場ワークス",
@@ -1640,7 +1648,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân gia công, chế biến sản phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -1650,7 +1658,7 @@
       "raw_title": "◇＜加古川市＞建機アーム部品の機械加工/日払いOK【未経験から安心スタート♪】収入重視派さんに！残業20H以上！！"
     },
     {
-      "id": "298462d64bd1",
+      "id": "a978473f5e08",
       "title": "食品製造業",
       "company": "シニア・学生・外国人の方の応募歓迎新着エム・ヴイ・エム商事株式会社",
       "source_name": "HelloWork",
@@ -1667,7 +1675,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân sản xuất, chế tạo tại nhà máy.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -1677,7 +1685,7 @@
       "raw_title": "食品製造業"
     },
     {
-      "id": "26b27b20a26c",
+      "id": "5defb0f297e9",
       "title": "調理補助・洗い場",
       "company": "外国人応募可有限会社ダブリン",
       "source_name": "HelloWork",
@@ -1694,7 +1702,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển nhân viên nhà hàng, chế biến thực phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -1704,7 +1712,7 @@
       "raw_title": "調理補助・洗い場"
     },
     {
-      "id": "c1ce2bdba01e",
+      "id": "fbcf320419bd",
       "title": "郵便物の配達、ゆうパックの配達・集荷新着日本郵便株式会社 神戸北郵便局",
       "company": "",
       "source_name": "HelloWork",
@@ -1731,7 +1739,7 @@
       "raw_title": "郵便物の配達、ゆうパックの配達・集荷新着日本郵便株式会社 神戸北郵便局"
     },
     {
-      "id": "ecda8c025255",
+      "id": "ec593099c17d",
       "title": "＜大手企業で直接雇用＞20〜30代の男性活躍中！日勤専属／入社祝い金◇最大30万円／未経験OK／月収例33万円以上／独身寮あり【機械保全・電気保全業務】兵庫県尼崎市",
       "company": "株式会社大阪チタニウムテクノロジーズ",
       "source_name": "JobHouse",
@@ -1748,7 +1756,7 @@
       "fit_level": "Thấp",
       "fit_score": 2,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển nhân viên bảo trì/bảo dưỡng thiết bị, máy móc.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -1758,7 +1766,7 @@
       "raw_title": "＜大手企業で直接雇用＞20〜30代の男性活躍中！日勤専属／入社祝い金◇最大30万円／未経験OK／月収例33万円以上／独身寮あり【機械保全・電気保全業務】兵庫県尼崎市"
     },
     {
-      "id": "7ecddfc3ddd6",
+      "id": "22e3fb959ca7",
       "title": "◆未経験OK！石灰炉の操業・監視作業スタッフ募集",
       "company": "",
       "source_name": "工場ワークス",
@@ -1785,7 +1793,7 @@
       "raw_title": "◆未経験OK！石灰炉の操業・監視作業スタッフ募集"
     },
     {
-      "id": "52e257ef3df8",
+      "id": "6e5bdb105963",
       "title": "金属部品の加工補助スタッフ／時給1300円／寮完備／未経験可［月収例］24.2万円以上可",
       "company": "",
       "source_name": "工場ワークス",
@@ -1802,7 +1810,7 @@
       "fit_level": "Thấp",
       "fit_score": 2,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân gia công, chế biến sản phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -1812,7 +1820,7 @@
       "raw_title": "金属部品の加工補助スタッフ／時給1300円／寮完備／未経験可［月収例］24.2万円以上可"
     },
     {
-      "id": "61a195f23eb2",
+      "id": "50a2094b1856",
       "title": "ホールスタッフ",
       "company": "外国人歓迎有限会社ダブリン",
       "source_name": "HelloWork",
@@ -1829,7 +1837,7 @@
       "fit_level": "Thấp",
       "fit_score": 2,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển nhân viên nhà hàng, chế biến thực phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -1839,7 +1847,7 @@
       "raw_title": "ホールスタッフ"
     },
     {
-      "id": "24790fd3bdce",
+      "id": "46a6fa072de5",
       "title": "軽作業スタッフ",
       "company": "勤務時間・日数相談可",
       "source_name": "HelloWork",
@@ -1866,7 +1874,7 @@
       "raw_title": "軽作業スタッフ"
     },
     {
-      "id": "8133b61f23ec",
+      "id": "d9ce26aee9fa",
       "title": "◇溶接経験者急募◆寮補助3万円◇時給1,700円/月収29万円以上可◆日勤業務/土日休",
       "company": "株式会社Gファクトリー 大阪営業所",
       "source_name": "JobHouse",
@@ -1883,7 +1891,7 @@
       "fit_level": "Thấp",
       "fit_score": 2,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển thợ hàn, gia công kim loại.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -1893,7 +1901,7 @@
       "raw_title": "◇溶接経験者急募◆寮補助3万円◇時給1,700円/月収29万円以上可◆日勤業務/土日休"
     },
     {
-      "id": "f368e98bcebc",
+      "id": "d6b68fcbb916",
       "title": "◇駅徒歩5分◆時給1,450円月収25万円以上◇組立業務◆もの作りの好きな方募集!!",
       "company": "株式会社Gファクトリー 大阪営業所",
       "source_name": "JobHouse",
@@ -1910,7 +1918,7 @@
       "fit_level": "Thấp",
       "fit_score": 2,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân lắp ráp linh kiện, sản phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -1920,7 +1928,7 @@
       "raw_title": "◇駅徒歩5分◆時給1,450円月収25万円以上◇組立業務◆もの作りの好きな方募集!!"
     },
     {
-      "id": "b32aa1cd4983",
+      "id": "62e6f6b57df9",
       "title": "【20~40代活躍中】【月収30万円可】大手電機メーカー☆手のひらサイズのプラスチック部品製造♪未経験OK！社宅費全額補助◎《JACM1-PC》",
       "company": "UTエージェント株式会社 関西第二CU",
       "source_name": "JobHouse",
@@ -1937,7 +1945,7 @@
       "fit_level": "Thấp",
       "fit_score": 2,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân sản xuất, chế tạo tại nhà máy.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -1947,7 +1955,7 @@
       "raw_title": "【20~40代活躍中】【月収30万円可】大手電機メーカー☆手のひらサイズのプラスチック部品製造♪未経験OK！社宅費全額補助◎《JACM1-PC》"
     },
     {
-      "id": "b340d0e2eafa",
+      "id": "9e170f28203c",
       "title": "【20~40代女性活躍中】◆未経験OK！チーズの製造・梱包スタッフ募集<<再入社手当最大15万円支給！>>",
       "company": "高木工業株式会社",
       "source_name": "JobHouse",
@@ -1964,7 +1972,7 @@
       "fit_level": "Thấp",
       "fit_score": 2,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân sản xuất, chế tạo tại nhà máy.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -1974,7 +1982,7 @@
       "raw_title": "【20~40代女性活躍中】◆未経験OK！チーズの製造・梱包スタッフ募集<<再入社手当最大15万円支給！>>"
     },
     {
-      "id": "42f1c9e7da25",
+      "id": "e34aa21aea4c",
       "title": "【20~40代活躍中】【日勤＆土日祝休み♪】マーガリンの製造業務！年休120日♪空調完備！未経験OK◎基本残業なし！《JXTU1C》",
       "company": "UTエージェント株式会社 関西第二CU",
       "source_name": "JobHouse",
@@ -1991,7 +1999,7 @@
       "fit_level": "Thấp",
       "fit_score": 2,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân sản xuất, chế tạo tại nhà máy.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -2003,115 +2011,7 @@
   ],
   "top_jobs": [
     {
-      "id": "b26ba3628341",
-      "title": "営業【兵庫県全域及び近隣地区へのルート営業が主となります】",
-      "company": "JOB Harima",
-      "source_name": "JOB Harima",
-      "source_type": "JOB Harima",
-      "source_url": "",
-      "area": "兵庫県全域及び近隣地区へのルート営業が主となります】",
-      "geo_tier": "Unknown",
-      "job_category": "Other",
-      "employment_type": "正社員",
-      "salary": "",
-      "shift": "",
-      "japanese_requirement": "",
-      "visa": "",
-      "fit_level": "Cao",
-      "fit_score": 5,
-      "badges": [],
-      "why_notable": "",
-      "risks": [],
-      "missing_info": [],
-      "is_agency": false,
-      "is_large_company": false,
-      "is_duplicate": false,
-      "duplicate_sources": [],
-      "raw_title": "営業【兵庫県全域及び近隣地区へのルート営業が主となります】"
-    },
-    {
-      "id": "f2e1f444c365",
-      "title": "洲本市",
-      "company": "日本語教育事業のサポート（通訳翻訳・生活習慣等）新着クイックリサーチ協同組合",
-      "source_name": "HelloWork",
-      "source_type": "HelloWork",
-      "source_url": "https://hello-work.info/job/1303009183061/",
-      "area": "兵庫県洲本市安乎町平安浦１８８１ー２",
-      "geo_tier": "Unknown",
-      "job_category": "Other",
-      "employment_type": "正社員",
-      "salary": "",
-      "shift": "",
-      "japanese_requirement": "",
-      "visa": "",
-      "fit_level": "Cao",
-      "fit_score": 4,
-      "badges": [],
-      "why_notable": "",
-      "risks": [],
-      "missing_info": [],
-      "is_agency": false,
-      "is_large_company": false,
-      "is_duplicate": false,
-      "duplicate_sources": [],
-      "raw_title": "洲本市"
-    },
-    {
-      "id": "96e558bbf4d6",
-      "title": "外国人（中国）就労者のサポート業務・通訳業務ビジネス・コープ協同組合",
-      "company": "",
-      "source_name": "HelloWork",
-      "source_type": "HelloWork",
-      "source_url": "https://hello-work.info/job/2805009666461/",
-      "area": "兵庫県姫路市三左衛門堀西の町６５番地",
-      "geo_tier": "Unknown",
-      "job_category": "Other",
-      "employment_type": "正社員",
-      "salary": "",
-      "shift": "",
-      "japanese_requirement": "",
-      "visa": "",
-      "fit_level": "Cao",
-      "fit_score": 4,
-      "badges": [],
-      "why_notable": "",
-      "risks": [],
-      "missing_info": [],
-      "is_agency": false,
-      "is_large_company": false,
-      "is_duplicate": false,
-      "duplicate_sources": [],
-      "raw_title": "外国人（中国）就労者のサポート業務・通訳業務ビジネス・コープ協同組合"
-    },
-    {
-      "id": "e5eb431b480d",
-      "title": "外国人（ベトナム）就労者のサポート業務・通訳業務ビジネス・コープ協同組合",
-      "company": "",
-      "source_name": "HelloWork",
-      "source_type": "HelloWork",
-      "source_url": "https://hello-work.info/job/2805010507461/",
-      "area": "兵庫県姫路市三左衛門堀西の町６５番地",
-      "geo_tier": "Unknown",
-      "job_category": "Other",
-      "employment_type": "正社員",
-      "salary": "",
-      "shift": "",
-      "japanese_requirement": "",
-      "visa": "",
-      "fit_level": "Cao",
-      "fit_score": 4,
-      "badges": [],
-      "why_notable": "",
-      "risks": [],
-      "missing_info": [],
-      "is_agency": false,
-      "is_large_company": false,
-      "is_duplicate": false,
-      "duplicate_sources": [],
-      "raw_title": "外国人（ベトナム）就労者のサポート業務・通訳業務ビジネス・コープ協同組合"
-    },
-    {
-      "id": "358011b94666",
+      "id": "4aa41338c26f",
       "title": "メンテナンス（急募）日本人、外国籍（定住者、永住者）可能株式会社リック",
       "company": "",
       "source_name": "HelloWork",
@@ -2128,154 +2028,18 @@
       "fit_level": "Cao",
       "fit_score": 4,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển nhân viên bảo trì/bảo dưỡng thiết bị, máy móc.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
       "is_large_company": false,
       "is_duplicate": false,
       "duplicate_sources": [],
-      "raw_title": "メンテナンス（急募）日本人、外国籍（定住者、永住者）可能株式会社リック"
-    }
-  ],
-  "priority_jobs": [
-    {
-      "id": "b26ba3628341",
-      "title": "営業【兵庫県全域及び近隣地区へのルート営業が主となります】",
-      "company": "JOB Harima",
-      "source_name": "JOB Harima",
-      "source_type": "JOB Harima",
-      "source_url": "",
-      "area": "兵庫県全域及び近隣地区へのルート営業が主となります】",
-      "geo_tier": "Unknown",
-      "job_category": "Other",
-      "employment_type": "正社員",
-      "salary": "",
-      "shift": "",
-      "japanese_requirement": "",
-      "visa": "",
-      "fit_level": "Cao",
-      "fit_score": 5,
-      "badges": [],
-      "why_notable": "",
-      "risks": [],
-      "missing_info": [],
-      "is_agency": false,
-      "is_large_company": false,
-      "is_duplicate": false,
-      "duplicate_sources": [],
-      "raw_title": "営業【兵庫県全域及び近隣地区へのルート営業が主となります】"
+      "raw_title": "メンテナンス（急募）日本人、外国籍（定住者、永住者）可能株式会社リック",
+      "title_vi": "Tuyển gấp nhân viên bảo trì. Chào đón cả người Nhật và người nước ngoài (đang cư trú, thường trú)."
     },
     {
-      "id": "f2e1f444c365",
-      "title": "洲本市",
-      "company": "日本語教育事業のサポート（通訳翻訳・生活習慣等）新着クイックリサーチ協同組合",
-      "source_name": "HelloWork",
-      "source_type": "HelloWork",
-      "source_url": "https://hello-work.info/job/1303009183061/",
-      "area": "兵庫県洲本市安乎町平安浦１８８１ー２",
-      "geo_tier": "Unknown",
-      "job_category": "Other",
-      "employment_type": "正社員",
-      "salary": "",
-      "shift": "",
-      "japanese_requirement": "",
-      "visa": "",
-      "fit_level": "Cao",
-      "fit_score": 4,
-      "badges": [],
-      "why_notable": "",
-      "risks": [],
-      "missing_info": [],
-      "is_agency": false,
-      "is_large_company": false,
-      "is_duplicate": false,
-      "duplicate_sources": [],
-      "raw_title": "洲本市"
-    },
-    {
-      "id": "96e558bbf4d6",
-      "title": "外国人（中国）就労者のサポート業務・通訳業務ビジネス・コープ協同組合",
-      "company": "",
-      "source_name": "HelloWork",
-      "source_type": "HelloWork",
-      "source_url": "https://hello-work.info/job/2805009666461/",
-      "area": "兵庫県姫路市三左衛門堀西の町６５番地",
-      "geo_tier": "Unknown",
-      "job_category": "Other",
-      "employment_type": "正社員",
-      "salary": "",
-      "shift": "",
-      "japanese_requirement": "",
-      "visa": "",
-      "fit_level": "Cao",
-      "fit_score": 4,
-      "badges": [],
-      "why_notable": "",
-      "risks": [],
-      "missing_info": [],
-      "is_agency": false,
-      "is_large_company": false,
-      "is_duplicate": false,
-      "duplicate_sources": [],
-      "raw_title": "外国人（中国）就労者のサポート業務・通訳業務ビジネス・コープ協同組合"
-    },
-    {
-      "id": "e5eb431b480d",
-      "title": "外国人（ベトナム）就労者のサポート業務・通訳業務ビジネス・コープ協同組合",
-      "company": "",
-      "source_name": "HelloWork",
-      "source_type": "HelloWork",
-      "source_url": "https://hello-work.info/job/2805010507461/",
-      "area": "兵庫県姫路市三左衛門堀西の町６５番地",
-      "geo_tier": "Unknown",
-      "job_category": "Other",
-      "employment_type": "正社員",
-      "salary": "",
-      "shift": "",
-      "japanese_requirement": "",
-      "visa": "",
-      "fit_level": "Cao",
-      "fit_score": 4,
-      "badges": [],
-      "why_notable": "",
-      "risks": [],
-      "missing_info": [],
-      "is_agency": false,
-      "is_large_company": false,
-      "is_duplicate": false,
-      "duplicate_sources": [],
-      "raw_title": "外国人（ベトナム）就労者のサポート業務・通訳業務ビジネス・コープ協同組合"
-    },
-    {
-      "id": "358011b94666",
-      "title": "メンテナンス（急募）日本人、外国籍（定住者、永住者）可能株式会社リック",
-      "company": "",
-      "source_name": "HelloWork",
-      "source_type": "HelloWork",
-      "source_url": "https://hello-work.info/job/2806003136561/",
-      "area": "兵庫県加古川市野口町坂元６８－１",
-      "geo_tier": "Unknown",
-      "job_category": "Other",
-      "employment_type": "正社員",
-      "salary": "",
-      "shift": "",
-      "japanese_requirement": "",
-      "visa": "",
-      "fit_level": "Cao",
-      "fit_score": 4,
-      "badges": [],
-      "why_notable": "",
-      "risks": [],
-      "missing_info": [],
-      "is_agency": false,
-      "is_large_company": false,
-      "is_duplicate": false,
-      "duplicate_sources": [],
-      "raw_title": "メンテナンス（急募）日本人、外国籍（定住者、永住者）可能株式会社リック"
-    },
-    {
-      "id": "44d5a6d23268",
+      "id": "a45225252ff9",
       "title": "正社員◆一般事務兼企業様巡回新着社名非公開",
       "company": "",
       "source_name": "HelloWork",
@@ -2292,17 +2056,18 @@
       "fit_level": "Cao",
       "fit_score": 4,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển nhân viên văn phòng, hành chính.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
       "is_large_company": false,
       "is_duplicate": false,
       "duplicate_sources": [],
-      "raw_title": "正社員◆一般事務兼企業様巡回新着社名非公開"
+      "raw_title": "正社員◆一般事務兼企業様巡回新着社名非公開",
+      "title_vi": "Tuyển nhân viên văn phòng kiêm hỗ trợ doanh nghiệp."
     },
     {
-      "id": "7d7251d6558a",
+      "id": "70f24c4e7404",
       "title": "【20代～50代活躍中】【加古川市】資格が活かせるフォークリフト作業／土日祝休み／20代～50代活躍中！／制服貸与あり",
       "company": "",
       "source_name": "工場ワークス",
@@ -2319,17 +2084,18 @@
       "fit_level": "Cao",
       "fit_score": 4,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển lái xe nâng (forklift) vận chuyển hàng hóa trong kho/xưởng.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
       "is_large_company": false,
       "is_duplicate": false,
       "duplicate_sources": [],
-      "raw_title": "【20代～50代活躍中】【加古川市】資格が活かせるフォークリフト作業／土日祝休み／20代～50代活躍中！／制服貸与あり"
+      "raw_title": "【20代～50代活躍中】【加古川市】資格が活かせるフォークリフト作業／土日祝休み／20代～50代活躍中！／制服貸与あり",
+      "title_vi": "Tuyển nhân viên lái xe nâng (forklift) tại Kakogawa."
     },
     {
-      "id": "018c5128debc",
+      "id": "6f49488bfeca",
       "title": "20～40代活躍中／工場でのお仕事が初めての方にオススメ！／月収例24.6万円【住宅用建材の制振部品の製造機械オペレーター】（No.HJ-11189-14-JP）",
       "company": "",
       "source_name": "工場ワークス",
@@ -2346,7 +2112,7 @@
       "fit_level": "Cao",
       "fit_score": 4,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển nhân viên vận hành máy móc, thiết bị sản xuất.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -2356,7 +2122,7 @@
       "raw_title": "20～40代活躍中／工場でのお仕事が初めての方にオススメ！／月収例24.6万円【住宅用建材の制振部品の製造機械オペレーター】（No.HJ-11189-14-JP）"
     },
     {
-      "id": "68e626130818",
+      "id": "06ffeb3f9219",
       "title": "＜明石市＞【高時給1,700円！】正社員前提20代～30代活躍中！未経験OK、航空エンジン部品の加工・組立・検査作業　兵庫県在住の方が活躍中！",
       "company": "",
       "source_name": "工場ワークス",
@@ -2373,7 +2139,147 @@
       "fit_level": "Cao",
       "fit_score": 4,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân lắp ráp linh kiện, sản phẩm.",
+      "risks": [],
+      "missing_info": [],
+      "is_agency": false,
+      "is_large_company": false,
+      "is_duplicate": false,
+      "duplicate_sources": [],
+      "raw_title": "＜明石市＞【高時給1,700円！】正社員前提20代～30代活躍中！未経験OK、航空エンジン部品の加工・組立・検査作業　兵庫県在住の方が活躍中！"
+    }
+  ],
+  "priority_jobs": [
+    {
+      "id": "4aa41338c26f",
+      "title": "メンテナンス（急募）日本人、外国籍（定住者、永住者）可能株式会社リック",
+      "company": "",
+      "source_name": "HelloWork",
+      "source_type": "HelloWork",
+      "source_url": "https://hello-work.info/job/2806003136561/",
+      "area": "兵庫県加古川市野口町坂元６８－１",
+      "geo_tier": "Unknown",
+      "job_category": "Other",
+      "employment_type": "正社員",
+      "salary": "",
+      "shift": "",
+      "japanese_requirement": "",
+      "visa": "",
+      "fit_level": "Cao",
+      "fit_score": 4,
+      "badges": [],
+      "why_notable": "Cần tuyển nhân viên bảo trì/bảo dưỡng thiết bị, máy móc.",
+      "risks": [],
+      "missing_info": [],
+      "is_agency": false,
+      "is_large_company": false,
+      "is_duplicate": false,
+      "duplicate_sources": [],
+      "raw_title": "メンテナンス（急募）日本人、外国籍（定住者、永住者）可能株式会社リック",
+      "title_vi": "Tuyển gấp nhân viên bảo trì. Chào đón cả người Nhật và người nước ngoài (đang cư trú, thường trú)."
+    },
+    {
+      "id": "a45225252ff9",
+      "title": "正社員◆一般事務兼企業様巡回新着社名非公開",
+      "company": "",
+      "source_name": "HelloWork",
+      "source_type": "HelloWork",
+      "source_url": "https://hello-work.info/job/2811002370161/",
+      "area": "兵庫県南あわじ市",
+      "geo_tier": "Unknown",
+      "job_category": "Other",
+      "employment_type": "正社員",
+      "salary": "",
+      "shift": "",
+      "japanese_requirement": "",
+      "visa": "",
+      "fit_level": "Cao",
+      "fit_score": 4,
+      "badges": [],
+      "why_notable": "Cần tuyển nhân viên văn phòng, hành chính.",
+      "risks": [],
+      "missing_info": [],
+      "is_agency": false,
+      "is_large_company": false,
+      "is_duplicate": false,
+      "duplicate_sources": [],
+      "raw_title": "正社員◆一般事務兼企業様巡回新着社名非公開",
+      "title_vi": "Tuyển nhân viên văn phòng kiêm hỗ trợ doanh nghiệp."
+    },
+    {
+      "id": "70f24c4e7404",
+      "title": "【20代～50代活躍中】【加古川市】資格が活かせるフォークリフト作業／土日祝休み／20代～50代活躍中！／制服貸与あり",
+      "company": "",
+      "source_name": "工場ワークス",
+      "source_type": "工場ワークス",
+      "source_url": "https://04510.jp/jobs/28438430/?companyId=1040140026",
+      "area": "兵庫県",
+      "geo_tier": "Unknown",
+      "job_category": "Factory/Warehouse",
+      "employment_type": "正社員",
+      "salary": "時給1,350円",
+      "shift": "",
+      "japanese_requirement": "",
+      "visa": "",
+      "fit_level": "Cao",
+      "fit_score": 4,
+      "badges": [],
+      "why_notable": "Cần tuyển lái xe nâng (forklift) vận chuyển hàng hóa trong kho/xưởng.",
+      "risks": [],
+      "missing_info": [],
+      "is_agency": false,
+      "is_large_company": false,
+      "is_duplicate": false,
+      "duplicate_sources": [],
+      "raw_title": "【20代～50代活躍中】【加古川市】資格が活かせるフォークリフト作業／土日祝休み／20代～50代活躍中！／制服貸与あり",
+      "title_vi": "Tuyển nhân viên lái xe nâng (forklift) tại Kakogawa."
+    },
+    {
+      "id": "6f49488bfeca",
+      "title": "20～40代活躍中／工場でのお仕事が初めての方にオススメ！／月収例24.6万円【住宅用建材の制振部品の製造機械オペレーター】（No.HJ-11189-14-JP）",
+      "company": "",
+      "source_name": "工場ワークス",
+      "source_type": "工場ワークス",
+      "source_url": "https://04510.jp/jobs/28454623/?companyId=1072070001",
+      "area": "兵庫県",
+      "geo_tier": "Unknown",
+      "job_category": "Factory/Warehouse",
+      "employment_type": "正社員",
+      "salary": "月給205,000円",
+      "shift": "",
+      "japanese_requirement": "",
+      "visa": "",
+      "fit_level": "Cao",
+      "fit_score": 4,
+      "badges": [],
+      "why_notable": "Cần tuyển nhân viên vận hành máy móc, thiết bị sản xuất.",
+      "risks": [],
+      "missing_info": [],
+      "is_agency": false,
+      "is_large_company": false,
+      "is_duplicate": false,
+      "duplicate_sources": [],
+      "raw_title": "20～40代活躍中／工場でのお仕事が初めての方にオススメ！／月収例24.6万円【住宅用建材の制振部品の製造機械オペレーター】（No.HJ-11189-14-JP）"
+    },
+    {
+      "id": "06ffeb3f9219",
+      "title": "＜明石市＞【高時給1,700円！】正社員前提20代～30代活躍中！未経験OK、航空エンジン部品の加工・組立・検査作業　兵庫県在住の方が活躍中！",
+      "company": "",
+      "source_name": "工場ワークス",
+      "source_type": "工場ワークス",
+      "source_url": "https://04510.jp/jobs/27699735/?companyId=1130990001",
+      "area": "兵庫県在住の方が活躍中！",
+      "geo_tier": "Unknown",
+      "job_category": "Factory/Warehouse",
+      "employment_type": "正社員",
+      "salary": "時給1,700～2,125円",
+      "shift": "",
+      "japanese_requirement": "",
+      "visa": "",
+      "fit_level": "Cao",
+      "fit_score": 4,
+      "badges": [],
+      "why_notable": "Cần tuyển công nhân lắp ráp linh kiện, sản phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -2383,7 +2289,7 @@
       "raw_title": "＜明石市＞【高時給1,700円！】正社員前提20代～30代活躍中！未経験OK、航空エンジン部品の加工・組立・検査作業　兵庫県在住の方が活躍中！"
     },
     {
-      "id": "c80c7ff7703b",
+      "id": "332280db4722",
       "title": "Peopleキャリア入社社員の声",
       "company": "Kawasaki Heavy",
       "source_name": "Kawasaki Heavy",
@@ -2408,11 +2314,38 @@
       "is_duplicate": false,
       "duplicate_sources": [],
       "raw_title": "Peopleキャリア入社社員の声"
+    },
+    {
+      "id": "044fdaa6d9bd",
+      "title": "04Peopleキャリア入社社員の声",
+      "company": "Kawasaki Heavy",
+      "source_name": "Kawasaki Heavy",
+      "source_type": "Other",
+      "source_url": "",
+      "area": "",
+      "geo_tier": "Unknown",
+      "job_category": "LargeCompany",
+      "employment_type": "Unknown",
+      "salary": "",
+      "shift": "",
+      "japanese_requirement": "",
+      "visa": "",
+      "fit_level": "Cao",
+      "fit_score": 4,
+      "badges": [],
+      "why_notable": "",
+      "risks": [],
+      "missing_info": [],
+      "is_agency": false,
+      "is_large_company": true,
+      "is_duplicate": false,
+      "duplicate_sources": [],
+      "raw_title": "04Peopleキャリア入社社員の声"
     }
   ],
   "engineer_jobs": [
     {
-      "id": "ecda8c025255",
+      "id": "ec593099c17d",
       "title": "＜大手企業で直接雇用＞20〜30代の男性活躍中！日勤専属／入社祝い金◇最大30万円／未経験OK／月収例33万円以上／独身寮あり【機械保全・電気保全業務】兵庫県尼崎市",
       "company": "株式会社大阪チタニウムテクノロジーズ",
       "source_name": "JobHouse",
@@ -2429,7 +2362,7 @@
       "fit_level": "Thấp",
       "fit_score": 2,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển nhân viên bảo trì/bảo dưỡng thiết bị, máy móc.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -2441,7 +2374,7 @@
   ],
   "factory_warehouse_jobs": [
     {
-      "id": "7d7251d6558a",
+      "id": "70f24c4e7404",
       "title": "【20代～50代活躍中】【加古川市】資格が活かせるフォークリフト作業／土日祝休み／20代～50代活躍中！／制服貸与あり",
       "company": "",
       "source_name": "工場ワークス",
@@ -2458,17 +2391,18 @@
       "fit_level": "Cao",
       "fit_score": 4,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển lái xe nâng (forklift) vận chuyển hàng hóa trong kho/xưởng.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
       "is_large_company": false,
       "is_duplicate": false,
       "duplicate_sources": [],
-      "raw_title": "【20代～50代活躍中】【加古川市】資格が活かせるフォークリフト作業／土日祝休み／20代～50代活躍中！／制服貸与あり"
+      "raw_title": "【20代～50代活躍中】【加古川市】資格が活かせるフォークリフト作業／土日祝休み／20代～50代活躍中！／制服貸与あり",
+      "title_vi": "Tuyển nhân viên lái xe nâng (forklift) tại Kakogawa."
     },
     {
-      "id": "018c5128debc",
+      "id": "6f49488bfeca",
       "title": "20～40代活躍中／工場でのお仕事が初めての方にオススメ！／月収例24.6万円【住宅用建材の制振部品の製造機械オペレーター】（No.HJ-11189-14-JP）",
       "company": "",
       "source_name": "工場ワークス",
@@ -2485,7 +2419,7 @@
       "fit_level": "Cao",
       "fit_score": 4,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển nhân viên vận hành máy móc, thiết bị sản xuất.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -2495,7 +2429,7 @@
       "raw_title": "20～40代活躍中／工場でのお仕事が初めての方にオススメ！／月収例24.6万円【住宅用建材の制振部品の製造機械オペレーター】（No.HJ-11189-14-JP）"
     },
     {
-      "id": "68e626130818",
+      "id": "06ffeb3f9219",
       "title": "＜明石市＞【高時給1,700円！】正社員前提20代～30代活躍中！未経験OK、航空エンジン部品の加工・組立・検査作業　兵庫県在住の方が活躍中！",
       "company": "",
       "source_name": "工場ワークス",
@@ -2512,7 +2446,7 @@
       "fit_level": "Cao",
       "fit_score": 4,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân lắp ráp linh kiện, sản phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -2522,7 +2456,7 @@
       "raw_title": "＜明石市＞【高時給1,700円！】正社員前提20代～30代活躍中！未経験OK、航空エンジン部品の加工・組立・検査作業　兵庫県在住の方が活躍中！"
     },
     {
-      "id": "76dca6bd45b0",
+      "id": "98f484143dbf",
       "title": "【土日祝休み】月収例31万円以上可！制御装置の組立／直接雇用のチャンスあり◎／駅チカ徒歩8分／社宅完備＜兵庫県三田市＞《JBBN1C》",
       "company": "UTエージェント株式会社 関西第二CU",
       "source_name": "JobHouse",
@@ -2539,7 +2473,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân lắp ráp linh kiện, sản phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -2549,7 +2483,7 @@
       "raw_title": "【土日祝休み】月収例31万円以上可！制御装置の組立／直接雇用のチャンスあり◎／駅チカ徒歩8分／社宅完備＜兵庫県三田市＞《JBBN1C》"
     },
     {
-      "id": "40f26f1441b1",
+      "id": "55a120a03537",
       "title": "【20~40代活躍中】【日勤&土日休み♪】家電部品の機械操作・目視検査など！重量物基本なし＆モクモク作業◎明るい髪色OK♪20代～40代男女活躍中！＜神戸市西区＞JVCE1C《JVCE1C》",
       "company": "UTエージェント株式会社 関西第二CU",
       "source_name": "JobHouse",
@@ -2566,7 +2500,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển nhân viên kiểm tra chất lượng sản phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -2576,7 +2510,7 @@
       "raw_title": "【20~40代活躍中】【日勤&土日休み♪】家電部品の機械操作・目視検査など！重量物基本なし＆モクモク作業◎明るい髪色OK♪20代～40代男女活躍中！＜神戸市西区＞JVCE1C《JVCE1C》"
     },
     {
-      "id": "00f92b1843db",
+      "id": "b0c1dcbfd272",
       "title": "【20~40代活躍中】【精密部品の組付け・入出庫作業】未経験活躍中！／日勤＆土日祝休み♪／年休122日／残業ほぼなし！／複数名大募集《JYDP1C》",
       "company": "UTエージェント株式会社 関西第二CU",
       "source_name": "JobHouse",
@@ -2603,7 +2537,7 @@
       "raw_title": "【20~40代活躍中】【精密部品の組付け・入出庫作業】未経験活躍中！／日勤＆土日祝休み♪／年休122日／残業ほぼなし！／複数名大募集《JYDP1C》"
     },
     {
-      "id": "d0c865256b7f",
+      "id": "7d528479ecfb",
       "title": "月収31万円可+入社後6ヶ月限定で4万円の特別手当あり！ミニボーナス10万円★土日祝休＆年休126日♪50代活躍中☆かんたん作業◎駅近通勤！小型部品の組立《JBBN1C》",
       "company": "UTエージェント株式会社 関西第二CU",
       "source_name": "JobHouse",
@@ -2620,7 +2554,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân lắp ráp linh kiện, sản phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -2630,7 +2564,7 @@
       "raw_title": "月収31万円可+入社後6ヶ月限定で4万円の特別手当あり！ミニボーナス10万円★土日祝休＆年休126日♪50代活躍中☆かんたん作業◎駅近通勤！小型部品の組立《JBBN1C》"
     },
     {
-      "id": "c4200d4ddca6",
+      "id": "5f121a7f03ad",
       "title": "【20~40代活躍中】【汎用ロボットの組立・検査】月収29万円可／日勤＆土日祝休み／未経験OK《JDPE1C》",
       "company": "UTエージェント株式会社 関西第二CU",
       "source_name": "JobHouse",
@@ -2647,7 +2581,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân lắp ráp linh kiện, sản phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -2657,7 +2591,7 @@
       "raw_title": "【20~40代活躍中】【汎用ロボットの組立・検査】月収29万円可／日勤＆土日祝休み／未経験OK《JDPE1C》"
     },
     {
-      "id": "1645931f8902",
+      "id": "9dc4ad50a41b",
       "title": "【20~30代活躍中】★継続支援金10万円★【月収30万円可】未経験OKのエンジン部品製造オペレーター・検査◎土日祝休み＆働きやすい職場♪社宅費全額補助！《JFOL2C》",
       "company": "UTエージェント株式会社 関西第二CU",
       "source_name": "JobHouse",
@@ -2674,7 +2608,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển nhân viên vận hành máy móc, thiết bị sản xuất.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -2684,7 +2618,7 @@
       "raw_title": "【20~30代活躍中】★継続支援金10万円★【月収30万円可】未経験OKのエンジン部品製造オペレーター・検査◎土日祝休み＆働きやすい職場♪社宅費全額補助！《JFOL2C》"
     },
     {
-      "id": "1f319fab71b3",
+      "id": "6627785457e7",
       "title": "【20~40代活躍中】日勤＆土日休み♪家電部品の簡単な機械操作・目視検査！モクモク作業◎髪型自由♪《JVCE1C》",
       "company": "UTエージェント株式会社 関西第二CU",
       "source_name": "JobHouse",
@@ -2701,7 +2635,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển nhân viên kiểm tra chất lượng sản phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -2711,7 +2645,7 @@
       "raw_title": "【20~40代活躍中】日勤＆土日休み♪家電部品の簡単な機械操作・目視検査！モクモク作業◎髪型自由♪《JVCE1C》"
     },
     {
-      "id": "dde87c0fa36c",
+      "id": "d7f5cacd5b41",
       "title": "【20~40代活躍中】★6月入社限定！入社祝金10万円★軽作業×月収28万円可☆部品の塗装・検査・組立◇社宅費補助あり&充実の食堂♪未経験OK！《Jbnd1C》",
       "company": "UTエージェント株式会社 関西第二CU",
       "source_name": "JobHouse",
@@ -2728,7 +2662,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân lắp ráp linh kiện, sản phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -2738,7 +2672,7 @@
       "raw_title": "【20~40代活躍中】★6月入社限定！入社祝金10万円★軽作業×月収28万円可☆部品の塗装・検査・組立◇社宅費補助あり&充実の食堂♪未経験OK！《Jbnd1C》"
     },
     {
-      "id": "e2f14bd94a8f",
+      "id": "3d19d47e91d7",
       "title": "【20~40代活躍中】【未経験歓迎】機器の組付け作業☆日勤＆土日祝休み♪年休122日☆残業ほぼなし！複数名大募集◎《JYDP1C》",
       "company": "UTエージェント株式会社 関西第二CU",
       "source_name": "JobHouse",
@@ -2765,7 +2699,7 @@
       "raw_title": "【20~40代活躍中】【未経験歓迎】機器の組付け作業☆日勤＆土日祝休み♪年休122日☆残業ほぼなし！複数名大募集◎《JYDP1C》"
     },
     {
-      "id": "e2e46fc30286",
+      "id": "6e7e7bdb59b0",
       "title": "【20~40代活躍中】【もくもく作業】プラスチック部品の目視検査★無料送迎あり！社宅費全額補助あり♪日勤×土日休み♪《JACL1-PC》",
       "company": "UTエージェント株式会社 関西第二CU",
       "source_name": "JobHouse",
@@ -2782,7 +2716,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển nhân viên kiểm tra chất lượng sản phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -2792,7 +2726,7 @@
       "raw_title": "【20~40代活躍中】【もくもく作業】プラスチック部品の目視検査★無料送迎あり！社宅費全額補助あり♪日勤×土日休み♪《JACL1-PC》"
     },
     {
-      "id": "05101ff5e92e",
+      "id": "c69f2ac5307f",
       "title": "【20~40代活躍中】【月収29万円可×年休171日】自動車部品のフォークリフト運搬・在庫管理♪社宅費補助あり！《JMWS1C》",
       "company": "UTエージェント株式会社 関西第二CU",
       "source_name": "JobHouse",
@@ -2809,7 +2743,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển lái xe nâng (forklift) vận chuyển hàng hóa trong kho/xưởng.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -2819,7 +2753,7 @@
       "raw_title": "【20~40代活躍中】【月収29万円可×年休171日】自動車部品のフォークリフト運搬・在庫管理♪社宅費補助あり！《JMWS1C》"
     },
     {
-      "id": "091397824d98",
+      "id": "27999ca46e58",
       "title": "日勤×土日祝休み☆定着支援金10万円◎力仕事ほぼナシ♪駅徒歩8分！小型部品の組立・検査◇入社後6ヶ月限定！特別手当込みで月収例28万円可◎《JBBE1C》",
       "company": "UTエージェント株式会社 関西第二CU",
       "source_name": "JobHouse",
@@ -2836,7 +2770,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân lắp ráp linh kiện, sản phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -2846,7 +2780,7 @@
       "raw_title": "日勤×土日祝休み☆定着支援金10万円◎力仕事ほぼナシ♪駅徒歩8分！小型部品の組立・検査◇入社後6ヶ月限定！特別手当込みで月収例28万円可◎《JBBE1C》"
     },
     {
-      "id": "c7af54a88d33",
+      "id": "13c1e222892c",
       "title": "【20~40代活躍中】夜勤専属★月収30万円可！経験活かせる♪食品倉庫内でフォークリフト運搬作業など☆残業少なめ《JVCV1C》",
       "company": "UTエージェント株式会社 関西第二CU",
       "source_name": "JobHouse",
@@ -2863,7 +2797,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển lái xe nâng (forklift) vận chuyển hàng hóa trong kho/xưởng.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -2873,7 +2807,7 @@
       "raw_title": "【20~40代活躍中】夜勤専属★月収30万円可！経験活かせる♪食品倉庫内でフォークリフト運搬作業など☆残業少なめ《JVCV1C》"
     },
     {
-      "id": "78f4dec723a3",
+      "id": "27aa451760ea",
       "title": "即入寮OK／20～40代活躍中／細かいモクモク作業がお好きな方にオススメ♪／月収例27.3万円【飲料缶の目視検査】（No.HJ-11446-03-JP）",
       "company": "",
       "source_name": "工場ワークス",
@@ -2890,7 +2824,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển nhân viên kiểm tra chất lượng sản phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -2900,7 +2834,7 @@
       "raw_title": "即入寮OK／20～40代活躍中／細かいモクモク作業がお好きな方にオススメ♪／月収例27.3万円【飲料缶の目視検査】（No.HJ-11446-03-JP）"
     },
     {
-      "id": "ea3767f9d8b5",
+      "id": "460c319be03f",
       "title": "【20代～50代活躍中】［加古川市］《高時給1,700円》空港や物流で使う部品の成形・検査・梱包作業／未経験歓迎／交替勤務で稼げる",
       "company": "",
       "source_name": "工場ワークス",
@@ -2917,7 +2851,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển nhân viên kiểm tra chất lượng sản phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -2927,7 +2861,7 @@
       "raw_title": "【20代～50代活躍中】［加古川市］《高時給1,700円》空港や物流で使う部品の成形・検査・梱包作業／未経験歓迎／交替勤務で稼げる"
     },
     {
-      "id": "bc8138f85d46",
+      "id": "7f255ca7caf5",
       "title": "★＜加古川市＞活性炭の製造・運搬/日払いOK【経験不問！未経験◎】憧れの高収入Work！！モノ足りない方に・残業20H未満♪",
       "company": "",
       "source_name": "工場ワークス",
@@ -2944,7 +2878,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân sản xuất, chế tạo tại nhà máy.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -2954,7 +2888,7 @@
       "raw_title": "★＜加古川市＞活性炭の製造・運搬/日払いOK【経験不問！未経験◎】憧れの高収入Work！！モノ足りない方に・残業20H未満♪"
     },
     {
-      "id": "9d81b1f7eac8",
+      "id": "a721bd31c8a6",
       "title": "★＜加古川市＞フォークリフト/日払いOK【寮完備！】初心者カンゲイ♪高収入ワーク！程よい残業でお小遣い稼ぎ♪",
       "company": "",
       "source_name": "工場ワークス",
@@ -2971,7 +2905,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển lái xe nâng (forklift) vận chuyển hàng hóa trong kho/xưởng.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -2981,7 +2915,7 @@
       "raw_title": "★＜加古川市＞フォークリフト/日払いOK【寮完備！】初心者カンゲイ♪高収入ワーク！程よい残業でお小遣い稼ぎ♪"
     },
     {
-      "id": "d6c601376397",
+      "id": "193ed220694c",
       "title": "【20代～60代活躍中】［加古川市］倉庫内でリーチリフトを使って入出荷作業／高時給1,400円／コンビニ製品の取り扱い／屋内作業で快適作業",
       "company": "",
       "source_name": "工場ワークス",
@@ -2998,7 +2932,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển nhân viên kho, vận chuyển, sắp xếp hàng hóa.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -3008,7 +2942,7 @@
       "raw_title": "【20代～60代活躍中】［加古川市］倉庫内でリーチリフトを使って入出荷作業／高時給1,400円／コンビニ製品の取り扱い／屋内作業で快適作業"
     },
     {
-      "id": "da55142d35a3",
+      "id": "28f0ff8b2d82",
       "title": "＜加古川市＞【月収28万円可】未経験歓迎◎大手メーカーで製鉄設備の保守・点検！日勤&送迎あり◎直接雇用のチャンス★【履歴書不要☆オンライン面接OK】【入社キャンペーン実施中！】",
       "company": "",
       "source_name": "工場ワークス",
@@ -3025,7 +2959,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển nhân viên bảo trì/bảo dưỡng thiết bị, máy móc.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -3035,7 +2969,7 @@
       "raw_title": "＜加古川市＞【月収28万円可】未経験歓迎◎大手メーカーで製鉄設備の保守・点検！日勤&送迎あり◎直接雇用のチャンス★【履歴書不要☆オンライン面接OK】【入社キャンペーン実施中！】"
     },
     {
-      "id": "58d546867e2a",
+      "id": "e68f16da2166",
       "title": "【20代～50代活躍中】［加古川市］＜資格が活かせる！高時給1500円＞フォークリフト作業／交替勤務／20代～50代活躍中／制服貸与あり",
       "company": "",
       "source_name": "工場ワークス",
@@ -3052,7 +2986,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển lái xe nâng (forklift) vận chuyển hàng hóa trong kho/xưởng.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -3062,7 +2996,7 @@
       "raw_title": "【20代～50代活躍中】［加古川市］＜資格が活かせる！高時給1500円＞フォークリフト作業／交替勤務／20代～50代活躍中／制服貸与あり"
     },
     {
-      "id": "f4030031f91d",
+      "id": "2a7aa83532a8",
       "title": "工場で原料の入出荷・リフト作業／時給1500円／寮完備［月収例］23.6万円以上可",
       "company": "",
       "source_name": "工場ワークス",
@@ -3079,7 +3013,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân làm việc tại nhà máy, dây chuyền sản xuất.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -3089,7 +3023,7 @@
       "raw_title": "工場で原料の入出荷・リフト作業／時給1500円／寮完備［月収例］23.6万円以上可"
     },
     {
-      "id": "134b37f2fb18",
+      "id": "101739e68910",
       "title": "＜加古川市＞月収27万円可★航空機エンジン部品の製造／機械オペレーター◆未経験可！直接雇用の可能性あり【履歴書不要☆オンライン面接OK】【入社キャンペーン実施中！】",
       "company": "",
       "source_name": "工場ワークス",
@@ -3106,7 +3040,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển nhân viên vận hành máy móc, thiết bị sản xuất.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -3116,7 +3050,7 @@
       "raw_title": "＜加古川市＞月収27万円可★航空機エンジン部品の製造／機械オペレーター◆未経験可！直接雇用の可能性あり【履歴書不要☆オンライン面接OK】【入社キャンペーン実施中！】"
     },
     {
-      "id": "cc665401e92b",
+      "id": "fc9effb3ee31",
       "title": "【20代～40代活躍中】［加古川市］石炭の製造オペレーター／未経験OK／ドリンク無料提供あり／3交替×高時給1600円でシッカリ稼げる◎",
       "company": "",
       "source_name": "工場ワークス",
@@ -3133,7 +3067,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển nhân viên vận hành máy móc, thiết bị sản xuất.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -3143,7 +3077,7 @@
       "raw_title": "【20代～40代活躍中】［加古川市］石炭の製造オペレーター／未経験OK／ドリンク無料提供あり／3交替×高時給1600円でシッカリ稼げる◎"
     },
     {
-      "id": "8a4772703f13",
+      "id": "77948f99c7a4",
       "title": "工場で機械部品の溶接サポート／時給1450円／未経験可［月収例］27.9万円以上可",
       "company": "",
       "source_name": "工場ワークス",
@@ -3160,7 +3094,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân làm việc tại nhà máy, dây chuyền sản xuất.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -3170,7 +3104,7 @@
       "raw_title": "工場で機械部品の溶接サポート／時給1450円／未経験可［月収例］27.9万円以上可"
     },
     {
-      "id": "47f66fbb4f66",
+      "id": "dcfb8eb90fe4",
       "title": "＜加古川市＞【未経験歓迎】金属ロープの機械加工☆駅チカ徒歩10分♪長期休暇あり◎マイカー通勤OK♪【履歴書不要☆オンライン面接OK】【入社キャンペーン実施中！】",
       "company": "",
       "source_name": "工場ワークス",
@@ -3187,7 +3121,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân gia công, chế biến sản phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -3197,7 +3131,7 @@
       "raw_title": "＜加古川市＞【未経験歓迎】金属ロープの機械加工☆駅チカ徒歩10分♪長期休暇あり◎マイカー通勤OK♪【履歴書不要☆オンライン面接OK】【入社キャンペーン実施中！】"
     },
     {
-      "id": "794406093d58",
+      "id": "0e9598077fcc",
       "title": "工場で機械部品の溶接／時給1300円／寮完備／未経験可［月収例］25万円以上可",
       "company": "",
       "source_name": "工場ワークス",
@@ -3214,7 +3148,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân làm việc tại nhà máy, dây chuyền sản xuất.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -3224,7 +3158,7 @@
       "raw_title": "工場で機械部品の溶接／時給1300円／寮完備／未経験可［月収例］25万円以上可"
     },
     {
-      "id": "b1f758a1c2b4",
+      "id": "504182496b86",
       "title": "即入寮OK／20～40代活躍中／これまでの経験を活かして働きたい方へ◎／月収例32.9万円【飲料缶の大きさ・太さ・材質に合わせて製造ラインの調整】（No.HJ-11446-04-JP）",
       "company": "",
       "source_name": "工場ワークス",
@@ -3241,7 +3175,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân sản xuất, chế tạo tại nhà máy.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -3251,7 +3185,7 @@
       "raw_title": "即入寮OK／20～40代活躍中／これまでの経験を活かして働きたい方へ◎／月収例32.9万円【飲料缶の大きさ・太さ・材質に合わせて製造ラインの調整】（No.HJ-11446-04-JP）"
     },
     {
-      "id": "437a28d1b609",
+      "id": "4207c6a254aa",
       "title": "【20代～40代活躍中】［加古川市］ネジの入出庫とリフト作業／高時給1,350円／カウンター・リーチ両方使用／手作業ありでメリハリ抜群",
       "company": "",
       "source_name": "工場ワークス",
@@ -3278,7 +3212,7 @@
       "raw_title": "【20代～40代活躍中】［加古川市］ネジの入出庫とリフト作業／高時給1,350円／カウンター・リーチ両方使用／手作業ありでメリハリ抜群"
     },
     {
-      "id": "4fc9ca41fe63",
+      "id": "3d018b63d7ff",
       "title": "＜加古川市＞【日勤×土日祝休み】金属製品の検査、測定業務！【空調完備】【履歴書不要☆オンライン面接OK】【入社キャンペーン実施中！】",
       "company": "",
       "source_name": "工場ワークス",
@@ -3295,7 +3229,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển nhân viên kiểm tra chất lượng sản phẩm.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -3305,7 +3239,7 @@
       "raw_title": "＜加古川市＞【日勤×土日祝休み】金属製品の検査、測定業務！【空調完備】【履歴書不要☆オンライン面接OK】【入社キャンペーン実施中！】"
     },
     {
-      "id": "990a2f5c1c12",
+      "id": "c4130a2cb35b",
       "title": "＜加古川市＞【月収31万円可】活性炭の製造業務！マイカー通勤OK♪未経験歓迎☆売店完備！送迎バスあり◎【履歴書不要☆オンライン面接OK】【入社キャンペーン実施中！】",
       "company": "",
       "source_name": "工場ワークス",
@@ -3322,7 +3256,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân sản xuất, chế tạo tại nhà máy.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -3332,7 +3266,7 @@
       "raw_title": "＜加古川市＞【月収31万円可】活性炭の製造業務！マイカー通勤OK♪未経験歓迎☆売店完備！送迎バスあり◎【履歴書不要☆オンライン面接OK】【入社キャンペーン実施中！】"
     },
     {
-      "id": "298462d64bd1",
+      "id": "a978473f5e08",
       "title": "食品製造業",
       "company": "シニア・学生・外国人の方の応募歓迎新着エム・ヴイ・エム商事株式会社",
       "source_name": "HelloWork",
@@ -3349,7 +3283,7 @@
       "fit_level": "Trung bình",
       "fit_score": 3,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân sản xuất, chế tạo tại nhà máy.",
       "risks": [],
       "missing_info": [],
       "is_agency": false,
@@ -3359,7 +3293,7 @@
       "raw_title": "食品製造業"
     },
     {
-      "id": "7ecddfc3ddd6",
+      "id": "22e3fb959ca7",
       "title": "◆未経験OK！石灰炉の操業・監視作業スタッフ募集",
       "company": "",
       "source_name": "工場ワークス",
@@ -3386,7 +3320,7 @@
       "raw_title": "◆未経験OK！石灰炉の操業・監視作業スタッフ募集"
     },
     {
-      "id": "24790fd3bdce",
+      "id": "46a6fa072de5",
       "title": "軽作業スタッフ",
       "company": "勤務時間・日数相談可",
       "source_name": "HelloWork",
@@ -3413,34 +3347,7 @@
       "raw_title": "軽作業スタッフ"
     },
     {
-      "id": "f368e98bcebc",
-      "title": "◇駅徒歩5分◆時給1,450円月収25万円以上◇組立業務◆もの作りの好きな方募集!!",
-      "company": "株式会社Gファクトリー 大阪営業所",
-      "source_name": "JobHouse",
-      "source_type": "JobHouse",
-      "source_url": "https://jobhouse.jp/factory/articles/1209337",
-      "area": "",
-      "geo_tier": "Unknown",
-      "job_category": "Factory/Warehouse",
-      "employment_type": "Unknown",
-      "salary": "",
-      "shift": "",
-      "japanese_requirement": "",
-      "visa": "",
-      "fit_level": "Thấp",
-      "fit_score": 2,
-      "badges": [],
-      "why_notable": "",
-      "risks": [],
-      "missing_info": [],
-      "is_agency": true,
-      "is_large_company": false,
-      "is_duplicate": false,
-      "duplicate_sources": [],
-      "raw_title": "◇駅徒歩5分◆時給1,450円月収25万円以上◇組立業務◆もの作りの好きな方募集!!"
-    },
-    {
-      "id": "b32aa1cd4983",
+      "id": "62e6f6b57df9",
       "title": "【20~40代活躍中】【月収30万円可】大手電機メーカー☆手のひらサイズのプラスチック部品製造♪未経験OK！社宅費全額補助◎《JACM1-PC》",
       "company": "UTエージェント株式会社 関西第二CU",
       "source_name": "JobHouse",
@@ -3457,7 +3364,7 @@
       "fit_level": "Thấp",
       "fit_score": 2,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân sản xuất, chế tạo tại nhà máy.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -3467,7 +3374,7 @@
       "raw_title": "【20~40代活躍中】【月収30万円可】大手電機メーカー☆手のひらサイズのプラスチック部品製造♪未経験OK！社宅費全額補助◎《JACM1-PC》"
     },
     {
-      "id": "b340d0e2eafa",
+      "id": "9e170f28203c",
       "title": "【20~40代女性活躍中】◆未経験OK！チーズの製造・梱包スタッフ募集<<再入社手当最大15万円支給！>>",
       "company": "高木工業株式会社",
       "source_name": "JobHouse",
@@ -3484,7 +3391,7 @@
       "fit_level": "Thấp",
       "fit_score": 2,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân sản xuất, chế tạo tại nhà máy.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -3494,7 +3401,7 @@
       "raw_title": "【20~40代女性活躍中】◆未経験OK！チーズの製造・梱包スタッフ募集<<再入社手当最大15万円支給！>>"
     },
     {
-      "id": "42f1c9e7da25",
+      "id": "e34aa21aea4c",
       "title": "【20~40代活躍中】【日勤＆土日祝休み♪】マーガリンの製造業務！年休120日♪空調完備！未経験OK◎基本残業なし！《JXTU1C》",
       "company": "UTエージェント株式会社 関西第二CU",
       "source_name": "JobHouse",
@@ -3511,7 +3418,7 @@
       "fit_level": "Thấp",
       "fit_score": 2,
       "badges": [],
-      "why_notable": "",
+      "why_notable": "Cần tuyển công nhân sản xuất, chế tạo tại nhà máy.",
       "risks": [],
       "missing_info": [],
       "is_agency": true,
@@ -3523,7 +3430,7 @@
   ],
   "large_company_jobs": [
     {
-      "id": "c80c7ff7703b",
+      "id": "332280db4722",
       "title": "Peopleキャリア入社社員の声",
       "company": "Kawasaki Heavy",
       "source_name": "Kawasaki Heavy",
@@ -3550,7 +3457,7 @@
       "raw_title": "Peopleキャリア入社社員の声"
     },
     {
-      "id": "214929a47b87",
+      "id": "044fdaa6d9bd",
       "title": "04Peopleキャリア入社社員の声",
       "company": "Kawasaki Heavy",
       "source_name": "Kawasaki Heavy",
@@ -3578,5 +3485,35 @@
     }
   ],
   "facebook_findings": [],
+  "vietnamese_translation": [
+    {
+      "id": "d66ba6a8439e",
+      "title": "外国人（ベトナム）就労者のサポート業務・通訳業務ビジネス・コープ協同組合",
+      "company": "",
+      "source_name": "HelloWork",
+      "source_type": "HelloWork",
+      "source_url": "https://hello-work.info/job/2805010507461/",
+      "area": "兵庫県姫路市三左衛門堀西の町６５番地",
+      "geo_tier": "Unknown",
+      "job_category": "Other",
+      "employment_type": "正社員",
+      "salary": "",
+      "shift": "",
+      "japanese_requirement": "",
+      "visa": "",
+      "fit_level": "Cao",
+      "fit_score": 4,
+      "badges": [],
+      "why_notable": "Cần tuyển biên phiên dịch tiếng Việt-Nhật hỗ trợ người lao động Việt Nam.",
+      "risks": [],
+      "missing_info": [],
+      "is_agency": false,
+      "is_large_company": false,
+      "is_duplicate": false,
+      "duplicate_sources": [],
+      "raw_title": "外国人（ベトナム）就労者のサポート業務・通訳業務ビジネス・コープ協同組合"
+    }
+  ],
+  "removed_generic_count": 5,
   "facebook_crawl_log": []
 }
