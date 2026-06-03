@@ -654,14 +654,54 @@ def rank_items(items: list[JobItem]) -> list[JobItem]:
 # ═══════════════════════════════════════════
 #  STEP 7: Categorize
 # ═══════════════════════════════════════════
+def _is_vietnamese_translation(item: JobItem) -> bool:
+    """Check if a job is about Vietnamese translation/interpreter."""
+    text = f"{item.title} {item.company} {item.area}".lower()
+    has_vn = "ベトナム" in text or "việt" in text
+    has_translate = "通訳" in text or "翻訳" in text or "phiên dịch" in text or "dịch" in text
+    return has_vn and has_translate
+
+
+def _is_removed_job(item: JobItem) -> bool:
+    """Check if a job should be removed from main report.
+    Excludes: interpreter/translator (non-Vietnamese), sales/business roles.
+    """
+    text = f"{item.title} {item.company} {item.area}".lower()
+    # If it's Vietnamese translation, keep for special section
+    if _is_vietnamese_translation(item):
+        return False
+    # Exclude generic translator/interpreter
+    if "通訳" in text or "翻訳" in text:
+        return True
+    # Exclude sales/business
+    if "営業" in text or "セールス" in text or "ビジネス" in text:
+        return True
+    return False
+
+
 def categorize_jobs(items: list[JobItem]) -> dict[str, Any]:
-    """Split ranked items into categories for the report."""
-    top_jobs = items[:5]
-    priority_jobs = [i for i in items if i.fit_level == "Cao"][:10]
-    engineer_jobs = [i for i in items if i.job_category == "Engineer"]
-    factory_jobs = [i for i in items if i.job_category == "Factory/Warehouse"]
-    large_company_jobs = [i for i in items if i.is_large_company]
-    facebook_jobs = [i for i in items if i.source_type == "Facebook"]
+    """Split ranked items into categories for the report.
+    Separates Vietnamese translation jobs into own section,
+    removes general interpreter/translator and sales/business from main listings.
+    """
+    vietnamese_translation: list[JobItem] = []
+    removed_jobs: list[JobItem] = []
+    kept: list[JobItem] = []
+
+    for item in items:
+        if _is_vietnamese_translation(item):
+            vietnamese_translation.append(item)
+        elif _is_removed_job(item):
+            removed_jobs.append(item)
+        else:
+            kept.append(item)
+
+    top_jobs = kept[:5]
+    priority_jobs = [i for i in kept if i.fit_level == "Cao"][:10]
+    engineer_jobs = [i for i in kept if i.job_category == "Engineer"]
+    factory_jobs = [i for i in kept if i.job_category == "Factory/Warehouse"]
+    large_company_jobs = [i for i in kept if i.is_large_company]
+    facebook_jobs = [i for i in kept if i.source_type == "Facebook"]
 
     return {
         "top_jobs": [i.to_dict() for i in top_jobs],
@@ -670,6 +710,8 @@ def categorize_jobs(items: list[JobItem]) -> dict[str, Any]:
         "factory_warehouse_jobs": [i.to_dict() for i in factory_jobs],
         "large_company_jobs": [i.to_dict() for i in large_company_jobs],
         "facebook_findings": [i.to_dict() for i in facebook_jobs],
+        "vietnamese_translation": [i.to_dict() for i in vietnamese_translation],
+        "removed_generic_count": len(removed_jobs),
     }
 
 
@@ -746,6 +788,8 @@ def build_telegram_summary(
     large = summary.get("large_company_jobs", 0)
     facebook = summary.get("facebook_kept", 0)
     rejected_total = summary.get("rejected_total", 0)
+    vn_translation = summary.get("vietnamese_translation", 0)
+    removed_generic = summary.get("removed_generic", 0)
 
     lines.append(f"📊 **Tổng quan:**")
     lines.append(f"• Tổng job phù hợp: {total}")
@@ -753,7 +797,11 @@ def build_telegram_summary(
     lines.append(f"• LĐ phổ thông/xưởng/kho: {factory}")
     lines.append(f"• Công ty lớn: {large}")
     lines.append(f"• Facebook giữ lại: {facebook}")
+    if vn_translation:
+        lines.append(f"• Phiên dịch tiếng Việt: {vn_translation}")
     lines.append(f"• Tin bị loại: {rejected_total}")
+    if removed_generic:
+        lines.append(f"• Loại (biên dịch/sales): {removed_generic}")
     lines.append("")
 
     # Source stats
@@ -923,16 +971,19 @@ def run_pipeline(cfg_path: str) -> dict[str, Any]:
 
     # Build data dict
     categorized = categorize_jobs(items)
+    kept_count = len(items) - categorized.get("removed_generic_count", 0) - len(categorized.get("vietnamese_translation", []))
     data: dict[str, Any] = {
         "report_date": report_date_hr,
         "report_timestamp": start_time.isoformat(),
         "summary": {
-            "total_matched": len(items),
+            "total_matched": kept_count,
             "engineer_jobs": len(categorized["engineer_jobs"]),
             "factory_warehouse_jobs": len(categorized["factory_warehouse_jobs"]),
             "large_company_jobs": len(categorized["large_company_jobs"]),
             "facebook_kept": len(categorized["facebook_findings"]),
             "rejected_total": sum(rejected_counts.values()),
+            "vietnamese_translation": len(categorized["vietnamese_translation"]),
+            "removed_generic": categorized.get("removed_generic_count", 0),
         },
         "source_stats": source_stats,
         "rejected": rejected_counts,
