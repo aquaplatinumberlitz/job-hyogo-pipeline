@@ -855,7 +855,7 @@ def copy_to_public_server(html_path: str, report_date: str) -> str | None:
         import shutil
         shutil.copy2(html_path, dest)
         logger.info("Copied HTML to public server: %s", dest)
-        return f"https://150.230.56.153:8002/job_hyogo_report_{report_date}.html"
+        return f"http://150.230.56.153:8002/job_hyogo_report_{report_date}.html"
     except Exception as e:
         logger.warning("Failed to copy HTML to public server: %s", e)
         return None
@@ -871,7 +871,7 @@ def run_pipeline(cfg_path: str) -> dict[str, Any]:
     """
     start_time = datetime.now(timezone.utc)
     report_date = start_time.strftime("%Y-%m-%d_%H-%M-%S")
-    report_date_hr = start_time.strftime("%Y-%m-%d %H:%M")
+    report_date_hr = start_time.strftime("%Y-%m-%d_%H-%M")
 
     logger.info("=" * 60)
     logger.info("Job Hyogo Pipeline starting")
