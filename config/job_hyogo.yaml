@@ -68,22 +68,49 @@ keywords:
     - 設備
     - メンテナンス
   exclude:
+    # Tokutei / Intern
     - "特定技能"
     - "技能実習"
+    # Part-time
     - "アルバイト"
     - "バイト"
     - "パート"
+    # Construction
     - "建設"
     - "土木"
     - "施工管理"
+    # IT / Programming
     - "IT"
     - "SE"
     - "プログラマー"
     - "Webエンジニア"
     - "開発"
+    # Office / Desk work
+    - "事務"
+    - "オフィスワーク"
+    - "デスクワーク"
+    # Interpreter / Translator
+    - "通訳"
+    - "翻訳"
+    - "通訳翻訳"
+    # Vietnamese language jobs
+    - "ベトナム語"
+    - "ベトナム語通訳"
+    # Restaurant / Food
     - "飲食"
+    - "レストラン"
+    - "ホールスタッフ"
+    - "キッチンスタッフ"
+    - "調理"
+    - "調理補助"
+    # Service / Sales
     - "接客"
+    - "サービス"
     - "販売"
+    - "ホテル"
+    - "受付"
+    - "コールセンター"
+    # Cleaning / Delivery / Care
     - "清掃"
     - "介護"
     - "配送"

@@ -35,6 +35,7 @@ class JobItem:
     is_duplicate: bool = False
     duplicate_sources: list[str] = field(default_factory=list)
     raw_title: str = ""
+    title_vi: str = ""  # Vietnamese translation of title (set by LLM review step)
 
     def to_dict(self) -> dict:
         """Convert to dict for JSON serialization."""

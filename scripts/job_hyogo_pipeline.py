@@ -511,10 +511,66 @@ def filter_items(items: list[JobItem], cfg: Config) -> tuple[list[JobItem], dict
         "baito": 0,
         "it": 0,
         "construction": 0,
+        "office": 0,
+        "interpreter_translation": 0,
+        "vietnamese_language_job": 0,
+        "restaurant_food": 0,
+        "service_sales": 0,
         "unclear_company_salary_location": 0,
         "suspicious_broker": 0,
         "outside_area": 0,
         "other": 0,
+    }
+
+    # Mapping from keyword to reject category
+    keyword_to_reason: dict[str, str] = {
+        # Tokutei / Intern
+        "特定技能": "tokutei",
+        "技能実習": "tokutei",
+        # Part-time
+        "アルバイト": "baito",
+        "バイト": "baito",
+        "パート": "baito",
+        # Construction
+        "建設": "construction",
+        "土木": "construction",
+        "施工管理": "construction",
+        # IT / Programming
+        "it": "it",
+        "se": "it",
+        "プログラマー": "it",
+        "webエンジニア": "it",
+        "開発": "it",
+        # Office / Desk work
+        "事務": "office",
+        "オフィスワーク": "office",
+        "デスクワーク": "office",
+        # Interpreter / Translator
+        "通訳": "interpreter_translation",
+        "翻訳": "interpreter_translation",
+        "通訳翻訳": "interpreter_translation",
+        # Vietnamese language jobs
+        "ベトナム語": "vietnamese_language_job",
+        "ベトナム語通訳": "vietnamese_language_job",
+        # Restaurant / Food
+        "飲食": "restaurant_food",
+        "レストラン": "restaurant_food",
+        "ホールスタッフ": "restaurant_food",
+        "キッチンスタッフ": "restaurant_food",
+        "調理": "restaurant_food",
+        "調理補助": "restaurant_food",
+        # Service / Sales
+        "接客": "service_sales",
+        "サービス": "service_sales",
+        "販売": "service_sales",
+        "ホテル": "service_sales",
+        "受付": "service_sales",
+        "コールセンター": "service_sales",
+        # Cleaning / Delivery / Care
+        "清掃": "other",
+        "介護": "other",
+        "配送": "other",
+        "ドライバー": "other",
     }
 
     for item in items:
@@ -526,14 +582,7 @@ def filter_items(items: list[JobItem], cfg: Config) -> tuple[list[JobItem], dict
         for kw in excluded_kw:
             if kw.lower() in text:
                 should_exclude = True
-                if kw in ("特定技能", "技能実習"):
-                    reason = "tokutei"
-                elif kw in ("アルバイト", "バイト", "パート"):
-                    reason = "baito"
-                elif kw in ("it", "se", "プログラマー", "webエンジニア", "開発"):
-                    reason = "it"
-                elif kw in ("建設", "土木", "施工管理"):
-                    reason = "construction"
+                reason = keyword_to_reason.get(kw, "other")
                 break
 
         if should_exclude:
@@ -709,18 +758,29 @@ def rank_items(items: list[JobItem]) -> list[JobItem]:
 # ═══════════════════════════════════════════
 def _is_removed_job(item: JobItem) -> bool:
     """Check if a job should be removed from report.
-    Excludes: interpreter/translator, office/clerical, sales/business roles.
+    Excludes: interpreter/translator, office/clerical, sales/business,
+    restaurant/food, service/sales, and other excluded role types.
+    Must stay consistent with the exclude keyword list in config.
     """
     text = f"{item.title} {item.company} {item.area}".lower()
-    # Exclude interpreter/translator (all languages, including Vietnamese)
-    if "通訳" in text or "翻訳" in text:
-        return True
-    # Exclude office/clerical
-    if "事務" in text:
-        return True
-    # Exclude sales/business
-    if "営業" in text or "セールス" in text or "ビジネス" in text:
-        return True
+    # Combined exclusion checking using all the same keywords from config
+    excluded_patterns = [
+        # Interpreter / Translator
+        "通訳", "翻訳", "通訳翻訳",
+        # Office / Desk work
+        "事務", "オフィスワーク", "デスクワーク",
+        # Sales / Business
+        "営業", "セールス", "ビジネス",
+        # Restaurant / Food
+        "飲食", "レストラン", "ホールスタッフ", "キッチンスタッフ", "調理", "調理補助",
+        # Service / Sales
+        "接客", "サービス", "販売", "ホテル", "受付", "コールセンター",
+        # Vietnamese language jobs
+        "ベトナム語", "ベトナム語通訳",
+    ]
+    for pattern in excluded_patterns:
+        if pattern in text:
+            return True
     return False
 
 
@@ -880,6 +940,11 @@ def build_telegram_summary(
             ("baito", "Baito/Part"),
             ("it", "IT/Lập trình"),
             ("construction", "Xây dựng"),
+            ("office", "Văn phòng"),
+            ("interpreter_translation", "Phiên dịch"),
+            ("vietnamese_language_job", "Tiếng Việt"),
+            ("restaurant_food", "Nhà hàng/Ẩm thực"),
+            ("service_sales", "Dịch vụ/Bán hàng"),
             ("unclear_company_salary_location", "Thiếu thông tin"),
             ("other", "Khác"),
         ]:
@@ -1021,6 +1086,7 @@ def run_pipeline(cfg_path: str, phase: str = "full") -> dict[str, Any]:
         "all_jobs": [i.to_dict() for i in items],
         **categorized,
         "facebook_crawl_log": [],
+        "translation_log": [],  # Logs translation attempts/warnings for agent review step
     }
 
     json_path = export_json(data, json_path)

@@ -55,6 +55,9 @@ td { padding: 8px 10px; border-bottom: 1px solid #e5e0d8; }
 .fb-item { background: #fff; border: 1px solid #e5e0d8; border-radius: 8px; padding: 10px 12px; margin: 6px 0; font-size: 0.85em; }
 .fb-item .fb-meta { color: #64748b; font-size: 0.82em; }
 .empty-msg { color: #94a3b8; font-style: italic; font-size: 0.88em; padding: 10px 0; }
+.title-vi { margin-top: 4px; color: #475569; font-size: 0.9em; line-height: 1.45; padding-left: 8px; border-left: 3px solid #e5e0d8; }
+.job-title-ja { font-weight: 600; }
+.job-title-vi { font-size: 0.88em; color: #475569; margin-top: 2px; }
 .footer-note { font-size: 0.75em; color: #94a3b8; text-align: center; margin-top: 24px; padding-top: 12px; border-top: 1px solid #e5e0d8; }
 @media (max-width:600px) { .summary-grid { grid-template-columns: repeat(2, 1fr); } .job-card { padding: 10px; } body { padding: 10px; } }
 """
@@ -77,7 +80,7 @@ def render_job_card(job, show_link=True):
     # Vietnamese title (agent-reviewed translation)
     title_vi = job.get("title_vi", "")
     if title_vi:
-        parts.append(f'<div style="font-size:0.85em;color:#1f2933;margin:-2px 0 6px;">{esc(title_vi)}</div>')
+        parts.append(f'<div class="title-vi">{esc(title_vi)}</div>')
 
     # Badges
     badges_html = ""
@@ -298,7 +301,11 @@ def render(data):
         for job in engineer:
             url = job.get("source_url", "")
             link_cell = f'<a href="{esc(url)}" target="_blank" rel="noopener" style="color:#c46a2b;">🔗</a>' if url else '—'
-            lines.append(f'<tr><td>{esc(job.get("title",""))}</td><td>{esc(job.get("company",""))}</td><td>{esc(job.get("area",""))}</td><td>{esc(job.get("employment_type",""))}</td><td>{link_cell}</td></tr>')
+            title_cell = f'<div class="job-title-ja">{esc(job.get("title",""))}</div>'
+            tv = job.get("title_vi", "")
+            if tv:
+                title_cell += f'<div class="job-title-vi">{esc(tv)}</div>'
+            lines.append(f'<tr><td>{title_cell}</td><td>{esc(job.get("company",""))}</td><td>{esc(job.get("area",""))}</td><td>{esc(job.get("employment_type",""))}</td><td>{link_cell}</td></tr>')
         lines.append('</table></div>')
     else:
         lines.append('<div class="empty-msg">Không có job kỹ sư phù hợp kỳ này.</div>')
@@ -310,7 +317,11 @@ def render(data):
         for job in factory:
             url = job.get("source_url", "")
             link_cell = f'<a href="{esc(url)}" target="_blank" rel="noopener" style="color:#c46a2b;">🔗</a>' if url else '—'
-            lines.append(f'<tr><td>{esc(job.get("title",""))}</td><td>{esc(job.get("company",""))}</td><td>{esc(job.get("area",""))}</td><td>{esc(job.get("employment_type",""))}</td><td>{link_cell}</td></tr>')
+            title_cell = f'<div class="job-title-ja">{esc(job.get("title",""))}</div>'
+            tv = job.get("title_vi", "")
+            if tv:
+                title_cell += f'<div class="job-title-vi">{esc(tv)}</div>'
+            lines.append(f'<tr><td>{title_cell}</td><td>{esc(job.get("company",""))}</td><td>{esc(job.get("area",""))}</td><td>{esc(job.get("employment_type",""))}</td><td>{link_cell}</td></tr>')
         lines.append('</table></div>')
     else:
         lines.append('<div class="empty-msg">Không có job lao động phổ thông phù hợp kỳ này.</div>')
@@ -343,6 +354,11 @@ def render(data):
         ("baito", "Baito / バイト / パート"),
         ("it", "IT / lập trình"),
         ("construction", "Xây dựng / 建設"),
+        ("office", "Văn phòng / 事務"),
+        ("interpreter_translation", "Phiên dịch / 通訳翻訳"),
+        ("vietnamese_language_job", "Tiếng Việt / ベトナム語"),
+        ("restaurant_food", "Nhà hàng / 飲食"),
+        ("service_sales", "Dịch vụ / Bán hàng"),
         ("unclear_company_salary_location", "Không rõ cty/lương/địa điểm"),
         ("suspicious_broker", "Môi giới mập mờ"),
         ("outside_area", "Ngoài khu vực"),
@@ -468,6 +484,11 @@ def build_telegram_summary(data: dict) -> str:
             ("baito", "Baito/Part"),
             ("it", "IT/Lập trình"),
             ("construction", "Xây dựng"),
+            ("office", "Văn phòng"),
+            ("interpreter_translation", "Phiên dịch"),
+            ("vietnamese_language_job", "Tiếng Việt"),
+            ("restaurant_food", "Nhà hàng/Ẩm thực"),
+            ("service_sales", "Dịch vụ/Bán hàng"),
             ("unclear_company_salary_location", "Thiếu thông tin"),
             ("other", "Khác"),
         ]:
