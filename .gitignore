@@ -16,6 +16,10 @@ reports/job_hyogo/job_hyogo_report_*.json
 reports/job_hyogo/job_hyogo_report_*.html
 reports/job_hyogo/job_hyogo_report_*_telegram.txt
 reports/job_hyogo/facebook_raw_*.json
+reports/job_hyogo_report_*.json
+reports/job_hyogo_report_*.html
+reports/telegram_summary.md
+reports/.latest_json.txt
 
 # ── Logs ──
 *.log
