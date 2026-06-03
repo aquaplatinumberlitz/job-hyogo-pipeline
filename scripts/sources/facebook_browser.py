@@ -16,6 +16,7 @@ import os
 import random
 import re
 import time
+import urllib.parse
 from datetime import datetime
 from typing import Optional
 
@@ -23,6 +24,7 @@ logger = logging.getLogger("facebook_browser")
 
 # ── Constants ──
 CRED_FILE = os.path.expanduser("~/.hermes/references/facebook_job_crawl_cred.json")
+BROWSER_DATA_DIR = os.path.expanduser("~/.hermes/browser_data/facebook")
 RAW_DIR = os.path.expanduser("~/reports/job_hyogo")
 MAX_POSTS_PER_GROUP = 50
 MIN_SCROLL_WAIT = 2
@@ -56,15 +58,18 @@ def _random_delay():
     time.sleep(random.uniform(MIN_SCROLL_WAIT, MAX_SCROLL_WAIT))
 
 def init_browser():
-    """Initialize Playwright browser with stealth settings."""
+    """Initialize Playwright browser with persistent profile."""
     global _browser, _context, _page
     if _page:
         return _page
 
     from playwright.sync_api import sync_playwright
 
+    os.makedirs(BROWSER_DATA_DIR, exist_ok=True)
+
     pw = sync_playwright().start()
-    _browser = pw.chromium.launch(
+    _browser = pw.chromium.launch_persistent_context(
+        user_data_dir=BROWSER_DATA_DIR,
         headless=True,
         args=[
             "--disable-blink-features=AutomationControlled",
@@ -73,9 +78,6 @@ def init_browser():
             "--disable-web-security",
             "--disable-features=IsolateOrigins,site-per-process",
         ],
-    )
-
-    _context = _browser.new_context(
         viewport={"width": 1366, "height": 768},
         user_agent=(
             "Mozilla/5.0 (X11; Linux aarch64) AppleWebKit/537.36 "
@@ -88,13 +90,14 @@ def init_browser():
     )
 
     # Hide webdriver
-    _context.add_init_script("""
+    _browser.add_init_script("""
         Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
         Object.defineProperty(navigator, 'plugins', { get: () => [1,2,3,4,5] });
     """)
 
-    _page = _context.new_page()
-    logger.info("Browser initialized")
+    _context = _browser  # With persistent context, the context IS the browser
+    _page = _browser.pages[0] if _browser.pages else _browser.new_page()
+    logger.info("Browser initialized with persistent profile: %s", BROWSER_DATA_DIR)
     return _page
 
 def close_browser():
@@ -118,13 +121,57 @@ def close_browser():
     logger.info("Browser closed")
 
 def login() -> bool:
-    """Log into Facebook. Returns True if successful."""
+    """Log into Facebook. Returns True if successful.
+
+    First checks if already logged in via persistent session cookies.
+    Only attempts credential login if no existing session is found.
+    """
+    page = init_browser()
+
+    # Step 1: Check if already logged in via persistent session
+    try:
+        logger.info("Checking for existing Facebook session...")
+        page.goto("https://www.facebook.com/", timeout=LOGIN_TIMEOUT_MS, wait_until="domcontentloaded")
+        _random_delay()
+
+        # Look for signs of being logged in (avatar, name, feed)
+        try:
+            # Check for the user avatar/menu which only appears when logged in
+            avatar_indicators = page.locator(
+                'div[aria-label="Your profile"], '
+                'svg[aria-label="Your profile"], '
+                'a[aria-label*="Profile"], '
+                'div[role="navigation"] a[href*="/me/"], '
+                'a[href*="https://www.facebook.com/?"][role="link"] >> nth=0'
+            )
+            if avatar_indicators.first.is_visible(timeout=5000):
+                logger.info("Already logged in via persistent session — skipping credential login")
+                return True
+        except Exception:
+            pass
+
+        # Another check: see if we have cookies that indicate a session
+        cookies = page.context.cookies()
+        session_cookies = [c for c in cookies if "session" in c.get("name", "").lower() or "c_user" in c.get("name", "")]
+        if session_cookies:
+            logger.info("Found session cookies — assuming logged in")
+            return True
+
+        # Check page URL — if we're redirected away from login, probably logged in
+        current_url = page.url.lower()
+        if "login" not in current_url and "checkpoint" not in current_url:
+            logger.info("Already past login page — assuming logged in")
+            return True
+
+    except Exception as e:
+        logger.debug("Session check failed: %s — will attempt login", e)
+
+    # Step 2: Load credentials and perform login
     creds = load_creds()
     if not creds:
         logger.warning("No credentials — skipping Facebook login")
         return False
 
-    page = init_browser()
     try:
         logger.info("Navigating to Facebook login...")
         page.goto("https://www.facebook.com/login", timeout=LOGIN_TIMEOUT_MS, wait_until="domcontentloaded")
@@ -264,7 +311,7 @@ def crawl_group(group_url: str, keywords: list[str] | None = None) -> list[dict]
                             continue
 
                         # Get post link
-                        link_el = el.locator('a[href*="/posts/"], a[href*="/photo/"]').first
+                        link_el = el.locator('a[href*="/posts/"], a[href*="/photo/"], a[href*="/permalink/"], a[href*="/share/p/"], a[href*="multi_permalinks"]').first
                         post_url = ""
                         try:
                             post_url = link_el.get_attribute("href", timeout=2000) or ""
@@ -314,7 +361,98 @@ def crawl_group(group_url: str, keywords: list[str] | None = None) -> list[dict]
 
             _random_delay()
 
-        logger.info("Collected %d posts from group", len(posts))
+        logger.info("Collected %d posts from feed scroll", len(posts))
+
+        # ── Keyword search within the group ──
+        if keywords:
+            logger.info("Searching %d keywords in group: %s", len(keywords), group_url)
+            for keyword in keywords:
+                if len(posts) >= MAX_POSTS_PER_GROUP:
+                    logger.info("Reached max posts — stopping keyword searches")
+                    break
+                try:
+                    encoded_kw = urllib.parse.quote(keyword)
+                    search_url = f"{group_url.rstrip('/')}/search/?q={encoded_kw}"
+                    logger.debug("Searching keyword '%s' in group: %s", keyword, search_url)
+                    page.goto(search_url, timeout=NAV_TIMEOUT_MS, wait_until="domcontentloaded")
+                    _random_delay()
+
+                    # Wait for results to render
+                    try:
+                        page.wait_for_timeout(3000)
+                    except:
+                        pass
+
+                    # Collect posts from search results
+                    for _ in range(5):  # Scroll a few times for search results
+                        try:
+                            article_elements = page.locator('[role="article"]').all()
+                            for el in article_elements:
+                                try:
+                                    text = el.inner_text(timeout=3000)
+                                    if len(text) < 30:
+                                        continue
+
+                                    # Get post link
+                                    link_el = el.locator(
+                                        'a[href*="/posts/"], a[href*="/photo/"], '
+                                        'a[href*="/permalink/"], a[href*="/share/p/"], '
+                                        'a[href*="multi_permalinks"]'
+                                    ).first
+                                    post_url = ""
+                                    try:
+                                        post_url = link_el.get_attribute("href", timeout=2000) or ""
+                                        if post_url and not post_url.startswith("http"):
+                                            post_url = "https://www.facebook.com" + post_url
+                                    except:
+                                        pass
+
+                                    # Deduplicate
+                                    link_key = post_url or text[:100]
+                                    if link_key in seen_links:
+                                        continue
+                                    seen_links.add(link_key)
+
+                                    # Get poster name
+                                    poster = ""
+                                    try:
+                                        poster_el = el.locator(
+                                            'a[role="link"] h3, a[role="link"] span, .x1i10hfl'
+                                        ).first
+                                        poster = poster_el.inner_text(timeout=2000)
+                                    except:
+                                        pass
+
+                                    posts.append({
+                                        "group_url": group_url,
+                                        "post_url": post_url,
+                                        "poster": poster[:200] if poster else "",
+                                        "text": text[:2000],
+                                        "scraped_at": datetime.now().isoformat(),
+                                    })
+
+                                    if len(posts) >= MAX_POSTS_PER_GROUP:
+                                        break
+                                except:
+                                    continue
+
+                            if len(posts) >= MAX_POSTS_PER_GROUP:
+                                break
+                        except:
+                            pass
+
+                        # Scroll
+                        try:
+                            page.evaluate("window.scrollBy(0, window.innerHeight * 0.8)")
+                        except:
+                            page.keyboard.press("PageDown")
+                        _random_delay()
+
+                except Exception as kw_err:
+                    logger.debug("Keyword search '%s' failed in group: %s", keyword, kw_err)
+                    continue
+
+        logger.info("Collected %d total posts from group (feed + keyword searches)", len(posts))
 
     except Exception as e:
         logger.error("Error crawling group %s: %s", group_url, e)
@@ -401,7 +539,7 @@ def extract_job_posts(raw_posts: list[dict]) -> list[dict]:
             continue
         # Must not contain exclude keywords
         if any(kw.lower() in text for kw in exclude_keywords):
-            result["_rejected_reason"] = "exclude_keyword"
+            post["_rejected_reason"] = "exclude_keyword"
             continue
 
         # Extract basic fields

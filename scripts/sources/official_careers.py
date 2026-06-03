@@ -23,68 +23,118 @@ HEADERS = {
     "Accept-Language": "ja,en;q=0.9",
 }
 
-DEFAULT_COMPANIES: dict[str, dict[str, str]] = {
+DEFAULT_COMPANIES: dict[str, dict[str, Any]] = {
     "mitsubishi_electric": {
         "name": "Mitsubishi Electric",
         "url": "https://www.mitsubishielectric.co.jp/recruitment/",
+        "search_urls": [
+            "https://www.mitsubishielectric.co.jp/recruitment/search/?q=%E5%85%B5%E5%BA%AB",
+            "https://www.mitsubishielectric.co.jp/recruitment/search/?q=%E5%A7%AB%E8%B7%AF",
+        ],
+        "jp_name": "三菱電機",
     },
     "sumitomo_rubber": {
         "name": "Sumitomo Rubber",
         "url": "https://www.srigroup.co.jp/recruit/",
+        "search_urls": [
+            "https://www.srigroup.co.jp/recruit/search/?q=%E5%85%B5%E5%BA%AB",
+        ],
+        "jp_name": "住友ゴム工業",
     },
     "kobe_steel": {
         "name": "Kobe Steel",
         "url": "https://www.kobelco.co.jp/recruit/",
+        "search_urls": [
+            "https://www.kobelco.co.jp/recruit/jobs/?q=%E5%85%B5%E5%BA%AB",
+        ],
+        "jp_name": "神戸製鋼所",
     },
     "kawasaki_heavy": {
         "name": "Kawasaki Heavy",
         "url": "https://www.khi.co.jp/recruit/",
+        "search_urls": [
+            "https://www.khi.co.jp/recruit/list/?q=%E5%85%B5%E5%BA%AB",
+        ],
+        "jp_name": "川崎重工業",
     },
     "mitsubishi_heavy": {
         "name": "Mitsubishi Heavy",
         "url": "https://www.mhi.com/jp/careers/",
+        "search_urls": [
+            "https://www.mhi.com/jp/careers/search/?q=%E5%85%B5%E5%BA%AB",
+        ],
+        "jp_name": "三菱重工業",
     },
     "hitachi": {
         "name": "Hitachi",
         "url": "https://www.hitachi.co.jp/recruit/",
+        "search_urls": [
+            "https://www.hitachi.co.jp/recruit/jobs/?q=%E5%85%B5%E5%BA%AB",
+        ],
+        "jp_name": "日立製作所",
     },
 }
 
 
-def crawl(companies: dict[str, dict[str, str]] | None = None) -> list[dict[str, Any]]:
+def crawl(
+    companies: dict[str, dict[str, Any]] | None = None,
+    crawl_log: list[dict[str, Any]] | None = None,
+) -> list[dict[str, Any]]:
     """Crawl official company career pages for job listings.
 
     Args:
         companies: Dict of company configs with 'name' and 'url' keys.
                    Defaults to pre-defined large companies in Hyogo area.
+        crawl_log: Optional list to append crawl log entries for tracking.
 
     Returns:
         List of raw job item dicts. Most will likely be empty due to JS walls.
     """
     targets = companies or DEFAULT_COMPANIES
     raw_items: list[dict[str, Any]] = []
+    if crawl_log is None:
+        crawl_log = []
 
     for key, cfg in targets.items():
         company_name = cfg.get("name", key)
-        url = cfg.get("url", "")
-        if not url:
-            continue
+        jp_name = cfg.get("jp_name", "")
+        search_urls = cfg.get("search_urls", [])
 
-        logger.info("Crawling official career page: %s (%s)", company_name, url)
-        try:
-            resp = requests.get(url, headers=HEADERS, timeout=30)
-            resp.encoding = "utf-8"
-            resp.raise_for_status()
-        except requests.RequestException as e:
-            logger.debug("Official career page %s failed: %s", company_name, e)
-            continue
+        # Collect all URLs to try
+        urls_to_try = [cfg.get("url", "")]
+        urls_to_try.extend(search_urls)
+        urls_to_try = [u for u in urls_to_try if u]
 
-        items = _parse_career_page(resp.text, url, company_name)
-        if items:
-            raw_items.extend(items)
-            logger.info("  → %s: found %d items", company_name, len(items))
+        company_items = []
+        for url in urls_to_try:
+            if not url:
+                continue
+
+            logger.info("Crawling official career page: %s (%s)", company_name, url)
+            try:
+                resp = requests.get(url, headers=HEADERS, timeout=30)
+                resp.encoding = "utf-8"
+                resp.raise_for_status()
+            except requests.RequestException as e:
+                logger.debug("Official career page %s failed: %s", company_name, e)
+                continue
+
+            items = _parse_career_page(resp.text, url, company_name)
+            if items:
+                company_items.extend(items)
+                logger.info("  → %s: found %d items from %s", company_name, len(items), url)
+
+        if company_items:
+            raw_items.extend(company_items)
+            logger.info("  → %s: found %d total items", company_name, len(company_items))
         else:
             logger.info("  → %s: no items (likely JS-rendered or login wall)", company_name)
+            crawl_log.append({
+                "company": company_name,
+                "key": key,
+                "result": "needs_browser_or_specific_endpoint",
+                "urls_tried": urls_to_try,
+            })
 
     logger.info(
         "Official careers: parsed %d items from %d companies",

@@ -237,22 +237,6 @@ def render(data):
     # Title
     lines.append(f'<h1>📋 Báo cáo job Hyogo — {esc(rd)}</h1>')
 
-    # Vietnamese translation section (small, just under title)
-    vn_trans = data.get("vietnamese_translation", [])
-    if vn_trans:
-        lines.append(f'<div id=\"vn-trans\">')
-        lines.append(f'<h3 style=\"margin:8px 0 4px;font-size:0.9em;color:#c46a2b;\">🌐 Phiên dịch tiếng Việt ({len(vn_trans)} job)</h3>')
-        for job in vn_trans:
-            title = esc(job.get("title", ""))
-            company = esc(job.get("company", ""))
-            area = esc(job.get("area", ""))
-            salary = esc(job.get("salary", ""))
-            url = job.get("source_url", "")
-            link = f' · <a href=\"{esc(url)}\" target=\"_blank\" rel=\"noopener\" style=\"color:#c46a2b;\">🔗</a>' if url else ''
-            salary_str = f' · 💰{esc(salary)}' if salary else ''
-            lines.append(f'<div style=\"font-size:0.82em;padding:2px 0;\">• {title} @ {esc(company)} ({esc(area)}){salary_str}{link}</div>')
-        lines.append('</div>')
-
     # TOC
     lines.append('<div class="toc"><strong>📑 Mục lục</strong>')
     sections = [
@@ -280,9 +264,6 @@ def render(data):
         ("Công ty lớn", summary.get("large_company_jobs", 0)),
         ("Tin bị loại", summary.get("rejected_total", 0)),
     ]
-    vn_trans_count = summary.get("vietnamese_translation", 0)
-    if vn_trans_count:
-        cards.insert(2, ("Phiên dịch tiếng Việt", vn_trans_count))
     for label, val in cards:
         lines.append(f'<div class="summary-card"><span class="num">{int(val)}</span><span class="label">{esc(label)}</span></div>')
     lines.append('</div>')

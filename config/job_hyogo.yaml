@@ -112,8 +112,10 @@ sources:
     label: "工場ワークス"
     type: "工場ワークス"
   kyujin_box:
+    # NOTE: The punycode domain xn--pckua2a7gp8552d.com fails DNS resolution (NameResolutionError).
+    # The actual 求人ボックス site may have moved or changed domains. Disabled to avoid useless errors.
     url: "https://xn--pckua2a7gp8552d.com/"
-    enabled: true
+    enabled: false
     label: "求人ボックス"
     type: "求人ボックス"
 
@@ -122,26 +124,32 @@ large_companies:
   mitsubishi_electric:
     url: "https://www.mitsubishielectric.co.jp/recruitment/"
     name: "Mitsubishi Electric"
+    jp_name: "三菱電機"
     enabled: true
   sumitomo_rubber:
     url: "https://www.srigroup.co.jp/recruit/"
     name: "Sumitomo Rubber"
+    jp_name: "住友ゴム工業"
     enabled: true
   kobe_steel:
     url: "https://www.kobelco.co.jp/recruit/"
     name: "Kobe Steel"
+    jp_name: "神戸製鋼所"
     enabled: true
   kawasaki_heavy:
     url: "https://www.khi.co.jp/recruit/"
     name: "Kawasaki Heavy"
+    jp_name: "川崎重工業"
     enabled: true
   mitsubishi_heavy:
     url: "https://www.mhi.com/jp/careers/"
     name: "Mitsubishi Heavy"
+    jp_name: "三菱重工業"
     enabled: true
   hitachi:
     url: "https://www.hitachi.co.jp/recruit/"
     name: "Hitachi"
+    jp_name: "日立製作所"
     enabled: true
 
 # Facebook search settings

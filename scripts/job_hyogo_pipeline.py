@@ -160,35 +160,7 @@ def crawl_all(cfg: Config) -> dict[str, list[RawItem]]:
 
                         # Extract job posts from raw
                         job_posts = extract_job_posts(raw_posts)
-                        fb_items = []
-                        for jp in job_posts:
-                            item = JobItem(
-                                id=str(uuid.uuid4()),
-                                title=jp.get("title", "Facebook job post"),
-                                company=jp.get("company", ""),
-                                source_name="Facebook",
-                                source_type="Facebook",
-                                source_url=jp.get("source_url", ""),
-                                area=jp.get("area", ""),
-                                geo_tier=_geo_tier_for_area(jp.get("area", ""), cfg),
-                                job_category="Facebook",
-                                employment_type="Unknown",
-                                salary=jp.get("salary", ""),
-                                shift="",
-                                japanese_requirement="",
-                                visa="",
-                                fit_level="Trung bình",
-                                fit_score=3,
-                                badges=["Facebook"],
-                                why_notable="Facebook post",
-                                risks=["Cần xác minh thông tin qua Facebook"],
-                                missing_info=[],
-                                is_agency=False,
-                                is_large_company=False,
-                                is_duplicate=False,
-                                duplicate_sources=[],
-                            )
-                            fb_items.append(item)
+                        fb_items = list(job_posts)
 
                         logger.info("Browser Facebook crawl: %d raw, %d job posts, errors=%s",
                                     len(raw_posts), len(fb_items), errors)
@@ -227,7 +199,16 @@ def crawl_all(cfg: Config) -> dict[str, list[RawItem]]:
     enabled_cos = {}
     for key, co in large_cos.items():
         if co.get("enabled", False):
-            enabled_cos[key] = co
+            # Merge in search_urls from DEFAULT_COMPANIES for consistent behavior
+            merged_co = dict(co)
+            from sources.official_careers import DEFAULT_COMPANIES
+            if key in DEFAULT_COMPANIES:
+                default_data = DEFAULT_COMPANIES[key]
+                if "search_urls" in default_data and "search_urls" not in merged_co:
+                    merged_co["search_urls"] = default_data["search_urls"]
+                if "jp_name" in default_data and "jp_name" not in merged_co:
+                    merged_co["jp_name"] = default_data["jp_name"]
+            enabled_cos[key] = merged_co
     if enabled_cos:
         try:
             co_items = crawl_official_careers(enabled_cos)
@@ -433,12 +414,25 @@ def normalize_raw_items(
     """Normalize all raw items into JobItem dataclass instances."""
     items: list[JobItem] = []
 
+    # Build a set of all large company names (English + Japanese) for matching
+    large_co_names: set[str] = set()
+    for co_key, co in cfg.get("large_companies", {}).items():
+        en_name = co.get("name", "")
+        if en_name:
+            large_co_names.add(en_name.lower())
+        jp_name = co.get("jp_name", "")
+        if jp_name:
+            large_co_names.add(jp_name.lower())
+
     for source_key, raw_list in raw_results.items():
         for raw in raw_list:
             try:
                 source_name = raw.get("source_name", "") or source_key
                 source_type = SOURCE_TYPE_MAP.get(source_name, "Other")
-                if source_name in cfg.get("large_companies", {}):
+
+                # Official career items: explicitly set source_type and is_large_company
+                is_official_career = source_key == "official_careers"
+                if is_official_career:
                     source_type = "Official Career"
 
                 title = (raw.get("title") or "").strip()
@@ -450,11 +444,16 @@ def normalize_raw_items(
                 salary = (raw.get("salary") or "").strip()
                 url = (raw.get("url") or "").strip()
 
-                is_large_company = any(
-                    co_name.lower() in (company + title).lower()
-                    for co_key, co in cfg.get("large_companies", {}).items()
-                    if (co_name := co.get("name", ""))
-                )
+                # For official career sources, always mark as large company
+                if is_official_career:
+                    is_large_company = True
+                else:
+                    # Match against both English and Japanese company names
+                    combined_text = (company + " " + title).lower()
+                    is_large_company = any(
+                        co_name in combined_text
+                        for co_name in large_co_names
+                    )
 
                 geo_tier = _geo_tier_for_area(area, cfg)
 
@@ -708,24 +707,16 @@ def rank_items(items: list[JobItem]) -> list[JobItem]:
 # ═══════════════════════════════════════════
 #  STEP 7: Categorize
 # ═══════════════════════════════════════════
-def _is_vietnamese_translation(item: JobItem) -> bool:
-    """Check if a job is about Vietnamese translation/interpreter."""
-    text = f"{item.title} {item.company} {item.area}".lower()
-    has_vn = "ベトナム" in text or "việt" in text
-    has_translate = "通訳" in text or "翻訳" in text or "phiên dịch" in text or "dịch" in text
-    return has_vn and has_translate
-
-
 def _is_removed_job(item: JobItem) -> bool:
-    """Check if a job should be removed from main report.
-    Excludes: interpreter/translator (non-Vietnamese), sales/business roles.
+    """Check if a job should be removed from report.
+    Excludes: interpreter/translator, office/clerical, sales/business roles.
     """
     text = f"{item.title} {item.company} {item.area}".lower()
-    # If it's Vietnamese translation, keep for special section
-    if _is_vietnamese_translation(item):
-        return False
-    # Exclude generic translator/interpreter
+    # Exclude interpreter/translator (all languages, including Vietnamese)
     if "通訳" in text or "翻訳" in text:
+        return True
+    # Exclude office/clerical
+    if "事務" in text:
         return True
     # Exclude sales/business
     if "営業" in text or "セールス" in text or "ビジネス" in text:
@@ -735,17 +726,13 @@ def _is_removed_job(item: JobItem) -> bool:
 
 def categorize_jobs(items: list[JobItem]) -> dict[str, Any]:
     """Split ranked items into categories for the report.
-    Separates Vietnamese translation jobs into own section,
-    removes general interpreter/translator and sales/business from main listings.
+    Removes: interpreter/translator, office/clerical, sales/business.
     """
-    vietnamese_translation: list[JobItem] = []
     removed_jobs: list[JobItem] = []
     kept: list[JobItem] = []
 
     for item in items:
-        if _is_vietnamese_translation(item):
-            vietnamese_translation.append(item)
-        elif _is_removed_job(item):
+        if _is_removed_job(item):
             removed_jobs.append(item)
         else:
             kept.append(item)
@@ -764,7 +751,6 @@ def categorize_jobs(items: list[JobItem]) -> dict[str, Any]:
         "factory_warehouse_jobs": [i.to_dict() for i in factory_jobs],
         "large_company_jobs": [i.to_dict() for i in large_company_jobs],
         "facebook_findings": [i.to_dict() for i in facebook_jobs],
-        "vietnamese_translation": [i.to_dict() for i in vietnamese_translation],
         "removed_generic_count": len(removed_jobs),
     }
 
@@ -842,7 +828,6 @@ def build_telegram_summary(
     large = summary.get("large_company_jobs", 0)
     facebook = summary.get("facebook_kept", 0)
     rejected_total = summary.get("rejected_total", 0)
-    vn_translation = summary.get("vietnamese_translation", 0)
     removed_generic = summary.get("removed_generic", 0)
 
     lines.append(f"📊 **Tổng quan:**")
@@ -851,11 +836,9 @@ def build_telegram_summary(
     lines.append(f"• LĐ phổ thông/xưởng/kho: {factory}")
     lines.append(f"• Công ty lớn: {large}")
     lines.append(f"• Facebook giữ lại: {facebook}")
-    if vn_translation:
-        lines.append(f"• Phiên dịch tiếng Việt: {vn_translation}")
     lines.append(f"• Tin bị loại: {rejected_total}")
     if removed_generic:
-        lines.append(f"• Loại (biên dịch/sales): {removed_generic}")
+        lines.append(f"• Loại (biên dịch/sales/văn phòng): {removed_generic}")
     lines.append("")
 
     # Source stats
@@ -1020,7 +1003,7 @@ def run_pipeline(cfg_path: str, phase: str = "full") -> dict[str, Any]:
         source_stats[display] = len(raw_list)
 
     categorized = categorize_jobs(items)
-    kept_count = len(items) - categorized.get("removed_generic_count", 0) - len(categorized.get("vietnamese_translation", []))
+    kept_count = len(items) - categorized.get("removed_generic_count", 0)
     data: dict[str, Any] = {
         "report_date": report_date_hr,
         "report_timestamp": start_time.isoformat(),
@@ -1031,7 +1014,6 @@ def run_pipeline(cfg_path: str, phase: str = "full") -> dict[str, Any]:
             "large_company_jobs": len(categorized["large_company_jobs"]),
             "facebook_kept": len(categorized["facebook_findings"]),
             "rejected_total": sum(rejected_counts.values()),
-            "vietnamese_translation": len(categorized["vietnamese_translation"]),
             "removed_generic": categorized.get("removed_generic_count", 0),
         },
         "source_stats": source_stats,
@@ -1131,8 +1113,7 @@ def _run_render_phase(
             return job
 
         for section in ("top_jobs", "priority_jobs", "engineer_jobs",
-                        "factory_warehouse_jobs", "large_company_jobs", "facebook_findings",
-                        "vietnamese_translation"):
+                        "factory_warehouse_jobs", "large_company_jobs", "facebook_findings"):
             items = data.get(section, [])
             if items:
                 data[section] = [_sync(j) for j in items]
