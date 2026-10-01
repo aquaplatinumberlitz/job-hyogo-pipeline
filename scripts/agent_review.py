@@ -36,6 +36,27 @@ with open(json_path) as f:
 
 # ── 2. Japanese keyword -> Vietnamese title map (specificity-ordered) ────
 TITLE_MAP = [
+    # 2026-09-25 batch: オフィスプランナー職 (office planner, JOB Harima 正社員)
+    # contains NO factory keyword at all, so it matched nothing, fell through to
+    # the generic fallback and ranked #1 in top_jobs with 'Nhân viên sản xuất' +
+    # 'Cần công nhân làm việc tại nhà máy'. It is an OFFICE/planning role, NOT
+    # factory. Translate honestly and flag it in the delivery summary.
+    # MUST stay before every generic catch-all.
+    (r'オフィスプランナー|オフィスプランニング', 'Nhân viên thiết kế, bài trí văn phòng (office planner)'),
+    # 2026-10-01 batch: audit_fallback_jobs.py caught 5 generic fallbacks.
+    # （正）ジョブアドバイザー (job advisor, JOB Harima 正社員, ranked #2 in BOTH
+    # top_jobs and priority_jobs) and 有馬温泉旅館フロントマネージャー候補 (ryokan
+    # front-desk manager, ranked #4 in BOTH) are NON-factory office/service
+    # pass-throughs that carry no factory keyword — translate honestly and flag
+    # them in the delivery summary. リーフレタスの生産補助 (leaf-lettuce farming)
+    # and 【パ】監理責任者（監理業務スタッフ） are also non-factory; ◆工場経験者
+    # 歓迎！パワーショベル部品の製造 IS factory (kept in factory_warehouse_jobs).
+    # MUST stay before every generic catch-all.
+    (r'ジョブアドバイザー', 'Nhân viên tư vấn việc làm (job advisor)'),
+    (r'旅館|フロントマネージャー', 'Nhân viên lễ tân / quản lý tiền sảnh khách sạn (ryokan)'),
+    (r'リーフレタス|レタス', 'Nhân viên hỗ trợ trồng rau xà lách (nông nghiệp)'),
+    (r'パワーショベル', 'Công nhân sản xuất linh kiện máy xúc (power shovel)'),
+    (r'監理責任者|監理業務', 'Nhân viên giám sát, quản lý công việc (supervisor)'),
     # 2026-09-19 batch: audit_fallback_jobs.py caught 4 generic fallbacks —
     # 外国人駐在員へのお部屋探しコーディネーター (expat room-finding coordinator,
     # ranked #4 in top_jobs!), 専任ライダー (McDonald's delivery rider),
@@ -257,6 +278,34 @@ def gen_why_notable(job):
         if re.search(r'塗装.*検査.*組立', title):
             base = 'Cần công nhân sơn, kiểm tra, lắp ráp linh kiện'
             return _format_desc(base, area, emp_type, company)
+
+    # 2026-09-25 batch: office/planning roles carrying no factory keyword match
+    # nothing in either chain and land on the no-keyword fallback. Return
+    # explicitly (_format_desc) so the branch cannot be overwritten by the older
+    # chain's trailing else — see the 2026-09-19 pitfall in SKILL.md.
+    if re.search(r'オフィスプランナー|オフィスプランニング', title):
+        base = f'Cần nhân viên thiết kế, bài trí văn phòng (office planner) tại {company} — tính chất văn phòng/thiết kế, KHÔNG phải sản xuất' if company else 'Cần nhân viên thiết kế, bài trí văn phòng (office planner) — tính chất văn phòng/thiết kế, KHÔNG phải sản xuất'
+        return _format_desc(base, area, emp_type, company)
+
+    # 2026-10-01 batch: mirrors the TITLE_MAP additions at the top of the map.
+    # ジョブアドバイザー + 旅館フロントマネージャー are NON-factory pass-throughs
+    # that rank into top_jobs/priority_jobs; each branch MUST end in
+    # _format_desc (see the 2026-09-19 forgotten-return pitfall in SKILL.md).
+    if re.search(r'ジョブアドバイザー', title):
+        base = f'Cần nhân viên tư vấn việc làm (job advisor) tại {company} — tính chất tư vấn/văn phòng, KHÔNG phải sản xuất nhà máy' if company else 'Cần nhân viên tư vấn việc làm (job advisor) — tính chất tư vấn/văn phòng, KHÔNG phải sản xuất nhà máy'
+        return _format_desc(base, area, emp_type, company)
+    elif re.search(r'旅館|フロントマネージャー', title):
+        base = f'Cần nhân viên lễ tân / quản lý tiền sảnh khách sạn (ryokan) tại {company} — tính chất dịch vụ khách sạn, KHÔNG phải sản xuất' if company else 'Cần nhân viên lễ tân / quản lý tiền sảnh khách sạn (ryokan) — tính chất dịch vụ khách sạn, KHÔNG phải sản xuất'
+        return _format_desc(base, area, emp_type, company)
+    elif re.search(r'リーフレタス|レタス', title):
+        base = 'Cần nhân viên hỗ trợ trồng, thu hoạch rau xà lách (nông nghiệp) — không phải sản xuất nhà máy'
+        return _format_desc(base, area, emp_type, company)
+    elif re.search(r'パワーショベル', title):
+        base = 'Cần công nhân sản xuất linh kiện máy xúc (power shovel) tại nhà máy — chào đón người có kinh nghiệm nhà máy'
+        return _format_desc(base, area, emp_type, company)
+    elif re.search(r'監理責任者|監理業務', title):
+        base = 'Cần nhân viên giám sát, quản lý công việc (supervisor) — tính chất quản lý/giám sát, không phải công nhân sản xuất trực tiếp'
+        return _format_desc(base, area, emp_type, company)
 
     # 2026-09-19 batch (mirrors the TITLE_MAP additions at the top of the map):
     # the 4 audit fallbacks + the compound-title fixes. MUST stay before the
@@ -489,7 +538,7 @@ for job in data['all_jobs']:
     # (semantically OK but mismatched) description because it does not start
     # with a generic prefix. Force regeneration for those so title_vi and
     # why_notable stay consistent.
-    force_regen = re.search(r'お部屋探し|専任ライダー|保育士|ロボット.*製造|半導体製造装置|学生服|製造オペレーター.*検査|家電部品.*機械操作|家電部品.*ピッキング|ピッキング.*梱包|パーツ組立|自動車の検査|医療用ゴム|製鉄所|石炭の加工|入出荷|採取|鋳造|溶接補助|省力化装置', title)
+    force_regen = re.search(r'お部屋探し|専任ライダー|保育士|ロボット.*製造|半導体製造装置|学生服|製造オペレーター.*検査|家電部品.*機械操作|家電部品.*ピッキング|ピッキング.*梱包|パーツ組立|自動車の検査|医療用ゴム|製鉄所|石炭の加工|入出荷|採取|鋳造|溶接補助|省力化装置|オフィスプランナー|ジョブアドバイザー|旅館|フロントマネージャー|リーフレタス|レタス|パワーショベル|監理責任者|監理業務', title)
     # Regenerate when the existing description is one of the generic outputs:
     # the PIPELINE's rule-based prefixes ('Cần tuyển…'), the fallback prefix
     # ('Cần công nhân làm việc tại nhà máy…'), or gen_why_notable's OWN
