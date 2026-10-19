@@ -653,6 +653,8 @@ def filter_items(items: list[JobItem], cfg: Config) -> tuple[list[JobItem], dict
         "キッチンスタッフ": "restaurant_food",
         "調理": "restaurant_food",
         "調理補助": "restaurant_food",
+        "店舗スタッフ": "restaurant_food",
+        "ラーメン": "restaurant_food",
         # Service / Sales
         "接客": "service_sales",
         "サービス": "service_sales",
@@ -886,7 +888,7 @@ def _is_removed_job(item: JobItem) -> bool:
         # Sales / Business
         "営業", "セールス", "ビジネス",
         # Restaurant / Food
-        "飲食", "レストラン", "ホールスタッフ", "キッチンスタッフ", "調理", "調理補助",
+        "飲食", "レストラン", "ホールスタッフ", "キッチンスタッフ", "調理", "調理補助", "店舗スタッフ", "ラーメン",
         # Service / Sales
         "接客", "サービス", "販売", "ホテル", "受付", "コールセンター",
         # Vietnamese language jobs
